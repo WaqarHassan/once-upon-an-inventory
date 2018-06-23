@@ -27,36 +27,6 @@ ActiveRecord::Schema.define(version: 20170423144447) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
-    t.integer  "quantity"
-    t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "remaining_quantity"
-  end
-
-  create_table "members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.string   "quantity"
-    t.boolean  "status"
-    t.date     "expire_at"
-    t.integer  "item_id"
-    t.integer  "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_orders_on_item_id"
-    t.index ["member_id"], name: "index_orders_on_member_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
