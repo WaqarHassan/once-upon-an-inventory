@@ -1,0 +1,37 @@
+<%= form_for(distributor) do |f| %>
+  <% if distributor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(distributor.errors.count, "error") %> prohibited this distributor from being saved:</h2>
+
+      <ul>
+      <% distributor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_person %>
+    <%= f.text_field :contact_person %>
+  </div>
+
+  <div class="field">
+    <%= f.label :primary_phone_no %>
+    <%= f.text_field :primary_phone_no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :secondary_phone_number %>
+    <%= f.text_field :secondary_phone_number %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -48,25 +48,31 @@
         </a>
       </li>
       <li>
-        <a href="<%= items_path %>">
+        <a href="<%# items_path %>">
           <i class="fa fa-search"></i>
           <span>Check Inventory</span>
         </a>
       </li>
       <li>
-        <a href="<%= past_orders_path %>">
+        <a href="<%# past_orders_path %>">
           <i class="fa fa-history"></i>
           <span>Past Orders</span>
         </a>
       </li>
       <li>
-        <a href=" <%= new_item_path %>">
+        <a href=" <%# new_item_path %>">
           <i class="fa fa-plus"></i>
           <span>Add Item</span>
         </a>
       </li>
       <li>
-        <a href="<%= new_member_path %>">
+        <%=link_to distributors_path do %>
+          <i class="fa fa-plus"></i>
+          <span>Distributors</span>
+        <%end%>
+      </li>
+      <li>
+        <a href="<%# new_member_path %>">
           <i class="fa fa-user-plus"></i>
           <span>Add Member</span>
         </a>

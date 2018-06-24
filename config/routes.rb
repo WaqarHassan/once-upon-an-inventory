@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  resources :drugs
+  resources :companies
+  resources :distributors
   devise_for :users
   resources :users
 
   
-  # root 'orders#index'
+  root 'distributors#index'
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'
   # get 'past_orders' => 'orders#old'

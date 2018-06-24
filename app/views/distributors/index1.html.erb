@@ -1,0 +1,34 @@
+<%= render 'layouts/header' %>
+<p id="notice"><%= notice %></p>
+
+<h1>Distributors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact person</th>
+      <th>Primary phone no</th>
+      <th>Secondary phone number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @distributors.each do |distributor| %>
+      <tr>
+        <td><%= distributor.name %></td>
+        <td><%= distributor.contact_person %></td>
+        <td><%= distributor.primary_phone_no %></td>
+        <td><%= distributor.secondary_phone_number %></td>
+        <td><%= link_to 'Show', distributor %></td>
+        <td><%= link_to 'Edit', edit_distributor_path(distributor) %></td>
+        <td><%= link_to 'Destroy', distributor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Distributor', new_distributor_path %>

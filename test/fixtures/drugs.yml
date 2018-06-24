@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand_name: MyString
+  generic_name: MyString
+  retail_price: 1.5
+  total_price: 1.5
+  purchase_price: 1.5
+  company: one
+
+two:
+  brand_name: MyString
+  generic_name: MyString
+  retail_price: 1.5
+  total_price: 1.5
+  purchase_price: 1.5
+  company: two
