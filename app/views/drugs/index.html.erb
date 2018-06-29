@@ -54,8 +54,8 @@
                         <td><%= drug.purchase_price %></td>
                         <td><%= drug.company.name %></td>
 <!--                        <td><%#= link_to 'Show', drug %></td>-->
-                        <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
-                        <td><%= link_to 'X', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-xs"%></td>
+<!--                        <td><%#= link_to 'X', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
                       </tr>
                     <% end %>
                   </tbody>
