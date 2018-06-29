@@ -10,13 +10,17 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name , class: "form-control" , required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+      <div class="form-group">
+        <%= f.submit  class: "btn btn-primary pull-right"%>
+      </div>
+    </div>
   </div>
 <% end %>
