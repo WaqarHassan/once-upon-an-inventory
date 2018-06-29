@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
 
   
-  root 'distributors#index'
+  root 'dashboard#index'
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'
   # get 'past_orders' => 'orders#old'

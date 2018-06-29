@@ -28,7 +28,7 @@ class DrugsController < ApplicationController
 
     respond_to do |format|
       if @drug.save
-        format.html { redirect_to @drug, notice: 'Drug was successfully created.' }
+        format.html { redirect_to drugs_path, notice: 'Drug was successfully created.' }
         format.json { render :show, status: :created, location: @drug }
       else
         format.html { render :new }

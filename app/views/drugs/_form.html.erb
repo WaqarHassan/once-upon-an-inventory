@@ -10,38 +10,44 @@
       </ul>
     </div>
   <% end %>
+  <div class = "row">
+      <div class = "col-md-3"></div>
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.label :brand_name %>
+        <%= f.text_field :brand_name, class: "form-control" , required: :true%>
+      </div>
 
-  <div class="field">
-    <%= f.label :brand_name %>
-    <%= f.text_field :brand_name %>
+      <div class="field">
+        <%= f.label :generic_name %>
+        <%= f.text_field :generic_name, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :retail_price %>
+        <%= f.number_field :retail_price, class: "form-control" ,  step: 0.0001, required: :true%>
+      </div>
+
+      <div class="field">
+        <%= f.label :total_price %>
+        <%= f.number_field  :total_price, class: "form-control" ,  step: 0.0001, required: :true%>
+      </div>
+
+      <div class="field">
+        <%= f.label :purchase_price %>
+        <%= f.number_field  :purchase_price, class: "form-control" ,  step: 0.0001, required: :true%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :company %>
+        <%= f.collection_select :company_id, Company.all, :id, :name, {include_blank: "Select Company"}, {class: "form-control", required: true} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit class: "btn btn-submit btn-info pull-right" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :generic_name %>
-    <%= f.text_field :generic_name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :retail_price %>
-    <%= f.text_field :retail_price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :total_price %>
-    <%= f.text_field :total_price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :purchase_price %>
-    <%= f.text_field :purchase_price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :company_id %>
-    <%= f.text_field :company_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

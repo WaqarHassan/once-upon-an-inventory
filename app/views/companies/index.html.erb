@@ -1,27 +1,94 @@
-<p id="notice"><%= notice %></p>
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Dashboard
+    <small>Control panel</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li class="active">
+      <a href="#">
+        <i class="fa fa-home"></i>
+        Home Page</a>
+    </li>
+  </ol>
+</section>
 
-<h1>Companies</h1>
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <%= render partial: "/dashboard/status" %>
+  <!-- /.row -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Companies (<%# @active.count %>)</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover" id="distributors">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+              <!-- <th>
+                <i class="ion ion-log-in"></i>
+              </th>
+              <th>
+                <i class="ion ion-loop"></i>
+              </th>
+              <th>
+                <i class="ion ion-trash-b"></i>
+              </th> -->
+            </tr>
+            </thead>
+            <tbody>
+            <% @companies .each do |c| %>
+              <tr>
+                <td><%= c.name %></td>
+                <td>
+                  <div class = "row">
+                    <div class = "col-md-2">
+                      <%= link_to "Add" , new_company_path , class: "btn btn-block btn-info btn-flat bg-olive margin btn-xs" %>
+                    </div>
+                    <div class="col-md-2">
+                      <%= link_to "Delete", company_path(c), method: :delete, class: "btn btn-block btn-info btn-flat margin btn-xs" %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
 
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Company', new_company_path %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- ./col -->
+    <!-- ./col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<%= render 'layouts/footer' %>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script>
+    $(function () {
+        $("#distributors").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
