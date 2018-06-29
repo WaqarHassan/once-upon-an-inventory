@@ -28,7 +28,7 @@ class DistributorsController < ApplicationController
 
     respond_to do |format|
       if @distributor.save
-        format.html { redirect_to @distributor, notice: 'Distributor was successfully created.' }
+        format.html { redirect_to distributors_path, notice: 'Distributor was successfully created.' }
         format.json { render :show, status: :created, location: @distributor }
       else
         format.html { render :new }

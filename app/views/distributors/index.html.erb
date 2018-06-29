@@ -24,7 +24,10 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Distributors (<%# @active.count %>)</h3>
+              <h3 class="box-title">Distributors (<%= @distributors.count %>)</h3>
+              <div class="col-md-2 pull-right">
+                <%= link_to "Add Distributor", new_distributor_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
+              </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
