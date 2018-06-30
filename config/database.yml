@@ -15,7 +15,4 @@ production:
     <<: *default
     adapter: postgresql
     encoding: unicode
-    database: <%= ENV['INV_DB_NAME'] %>
-    username: <%= ENV['INV_USERNAME'] %>
-    password: <%= ENV['INV_PASSWORD'] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    database: inv_production
