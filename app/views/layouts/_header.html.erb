@@ -42,6 +42,12 @@
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
       <li>
+        <%= link_to invoices_path do %>
+          <i class="fa fa-search"></i>
+          <span>Invoices</span>
+        <% end %>
+      </li>
+      <li>
         <%= link_to drugs_path do %>
           <i class="fa fa-search"></i>
           <span>Drugs</span>

@@ -1,0 +1,52 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Invoices (<%= @invoices.count %>)</h3>
+          <div class="col-md-2 pull-right">
+            <%= link_to "New Invoice", new_invoice_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover" id= "invoices">
+            <thead>
+              <tr>
+                <th>Total</th>
+                <th>Patient name</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @invoices.each do |invoice| %>
+                <tr>
+                  <td><%= invoice.total %></td>
+                  <td><%= invoice.patient_name %></td>
+                  <td><%= invoice.age %></td>
+                 </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br>
+
+<script>
+    $(function () {
+        $("#invoices").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>

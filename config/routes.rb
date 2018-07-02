@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invoices, except: [:destroy]
   resources :drugs
   resources :companies
   resources :distributors
