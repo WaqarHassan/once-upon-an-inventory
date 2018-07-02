@@ -42,7 +42,7 @@ class DrugsController < ApplicationController
   def update
     respond_to do |format|
       if @drug.update(drug_params)
-        format.html { redirect_to @drug, notice: 'Drug was successfully updated.' }
+        format.html { redirect_to drugs_path, notice: 'Drug was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug }
       else
         format.html { render :edit }

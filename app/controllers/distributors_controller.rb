@@ -42,7 +42,7 @@ class DistributorsController < ApplicationController
   def update
     respond_to do |format|
       if @distributor.update(distributor_params)
-        format.html { redirect_to @distributor, notice: 'Distributor was successfully updated.' }
+        format.html { redirect_to distributors_path, notice: 'Distributor was successfully updated.' }
         format.json { render :show, status: :ok, location: @distributor }
       else
         format.html { render :edit }
