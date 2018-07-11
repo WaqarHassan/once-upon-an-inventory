@@ -1,0 +1,27 @@
+<%= form_for(invoice_drug) do |f| %>
+  <% if invoice_drug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice_drug.errors.count, "error") %> prohibited this invoice_drug from being saved:</h2>
+
+      <ul>
+      <% invoice_drug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :drug_name %>
+    <%= f.text_field :drug_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :drug_id %>
+    <%= f.text_field :drug_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

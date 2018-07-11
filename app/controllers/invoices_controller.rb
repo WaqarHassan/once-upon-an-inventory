@@ -16,6 +16,9 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
+    @d = Hash.new
+    Drug.all.map {|d| @d[d.generic_name] = d.retail_price }
+
   end
 
   # GET /invoices/1/edit
