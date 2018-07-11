@@ -18,7 +18,6 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @d = Hash.new
     Drug.all.map {|d| @d[d.generic_name] = d.retail_price }
-
   end
 
   # GET /invoices/1/edit
@@ -29,9 +28,11 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
-      if @invoice.save
+      if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
+        params[:invoice_drugs].values.each do |invoice_drug|
+          @invoice.invoice_drugs.create(drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
+        end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: @invoice }
       else
@@ -73,6 +74,9 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:total, :patient_name, :age)
+      params.require(:invoice).permit(:total, :patient_name, :age, :discount)
+    end
+    def invoice_drug_params invoice_drug
+      # invoice_drug.permit("drug_name", "drug_id", "price", "quantity" )
     end
 end

@@ -1,6 +1,21 @@
-<h1>New Invoice</h1>
+
+<label><h3>New Invoice</h3>
+</label>
 
 <%# render 'form', invoice: @invoice %>
+<div class="row">
+<div class = "col-md-12">
+  <div class = "col-md-4">
+    <label>Patient Name</label>
+    <%= text_field_tag :patient_name ,nil, class: "form-control", placeholder: "Patient Name" %>
+  </div>
+  <div class = "col-md-4">
+    <label>Age</label>
+    <%= text_field_tag :age ,nil, class: "form-control", placeholder: "Patient Age" %>
+  </div>
+</div>
+</div>
+<br>
 <div class = "row">
   <div class="col-md-10">
     <table class="table">
@@ -45,6 +60,7 @@
       </tr>
       </tbody>
     </table>
+    <button class="btn btn-flat btn-adn" onclick="return checkout();" id = "submit">Create   </button>
 
   </div>
 </div>
@@ -76,8 +92,11 @@
             source: availableTags,
             "ui-autocomplete": "highlight",
             select: function( event, ui ) {
-                // debugger
                 $(this).parents(".item-row").find(".price").val(window.drugs[ui.item.value])
+                // $('<input>').attr({
+                //     type: 'hidden',
+                //     class: 'drug_id'
+                // }).appendTo('form');
                 // $(".price").val(window.drugs[ui.item.value])
             },
             change: function (event, ui) {
@@ -86,6 +105,42 @@
             }
         });
     })
+    function checkout() {
+        $("#submit").prop('disabled', true);
+        invoice_drugs = []
+        $(".item-row ").each(function(){
+          if($(this).find(".item-name").length > 0)
+          {
+              invoice_drug = {
+                  drug_name: $(this).find(".item").val(),
+                  price: $(this).find(".price").val(),
+                  quantity: $(this).find(".qty").val()
+              }
+              invoice_drugs.push(invoice_drug)
+              console.log(invoice_drug)
+          }
+        })
+        $.ajax({
+            type: 'post',
+            url: '/invoices',
+            data: {
+              invoice: {
+                  total: $("#grandTotal").text(),
+                  patient_name: $("#patient_name").val(),
+                  age: $("#age").val(),
+                  discount: $("#discount").val(),
+              },
+              invoice_drugs: invoice_drugs
+            },
+            'success': function (response) {
+                window.location.href  = "/invoices"
+            },
+            'error': function (response) {
+                alert("Something went wrong. Please contact Waqar! ")
+                $("#submit").prop('disabled', false);
+            }
+        });
+    }
 </script>
 
 <%= link_to 'Back', invoices_path %>
