@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Invoices (<%= @invoices.count %>)</h3>
+          <h3 class="box-title">Invoices (<%= @invoices.try(:count)%>)</h3>
           <div class="col-md-2 pull-right">
             <%= link_to "New Invoice", new_invoice_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
           </div>
@@ -16,6 +16,7 @@
                 <th>Total</th>
                 <th>Patient name</th>
                 <th>Age</th>
+                <th>Actions</th>
               </tr>
             </thead>
 
@@ -25,6 +26,9 @@
                   <td><%= invoice.total %></td>
                   <td><%= invoice.patient_name %></td>
                   <td><%= invoice.age %></td>
+                  <td>
+                    <%= link_to "View ", invoice_path(invoice.id), class: "btn btn-block btn-success"%>
+                  </td>
                  </tr>
               <% end %>
             </tbody>
