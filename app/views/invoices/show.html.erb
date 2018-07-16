@@ -1,19 +1,44 @@
 <p id="notice"><%= notice %></p>
+<div class = "row">
+  <div class = "col-md-6">
+    <p>
+      <strong>Total:</strong>
+      <%= @invoice.total %>
+    </p>
+    <p>
+      <strong>Patient name:</strong>
+      <%= @invoice.patient_name %>
+    </p>
 
-<p>
-  <strong>Total:</strong>
-  <%= @invoice.total %>
-</p>
+    <p>
+      <strong>Age:</strong>
+      <%= @invoice.age %>
+    </p>
+    <p>
+      <strong>Discount:</strong>
+      <%= @invoice.discount %>
+    </p>
+  </div>
+  <div class = "col-md-6">
+    <% @invoice_drugs.each do |invoice_drug|%>
+      <p>
+        <strong>Drug name: </strong>
+        <%= invoice_drug.drug_name %>
+      </p>
+      <p>
+        <strong>Quantity: </strong>
+        <%= invoice_drug.quantity %>
+      </p>
+      <p>
+        <strong>Price: </strong>
+        <%= invoice_drug.price%>
+      </p>
+      ----------------------------------
+      <hr>
+    <%end%>
+  </div>
+</div>
 
-<p>
-  <strong>Patient name:</strong>
-  <%= @invoice.patient_name %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @invoice.age %>
-</p>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
 <%= link_to 'Back', invoices_path %>
