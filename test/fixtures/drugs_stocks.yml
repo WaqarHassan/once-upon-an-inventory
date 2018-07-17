@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  retail_price: 1.5
+  total_price: 1.5
+  purchase_price: 1.5
+  drugs: one
+  company_id: 1
+
+two:
+  retail_price: 1.5
+  total_price: 1.5
+  purchase_price: 1.5
+  drugs: two
+  company_id: 1

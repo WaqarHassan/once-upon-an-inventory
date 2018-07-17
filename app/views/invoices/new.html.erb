@@ -2,8 +2,12 @@
 <div class= "row">
   <div class = "col-md-12">
     <div class = "box">
-<label><h3>New Invoice</h3>
-</label>
+      <%= link_to invoices_path do%>
+        <i class="fa fa-arrow-left"></i>
+      <%end%>
+      <label>
+        <h3>New Invoice</h3>
+      </label>
 
 <%# render 'form', invoice: @invoice %>
 <div class="row">
@@ -63,10 +67,11 @@
       </tr>
       </tbody>
     </table>
-    <button class="btn btn-flat btn-adn" onclick="return checkout();" id = "submit">Create   </button>
+    <button class="btn btn-flat btn-danger" onclick="return checkout();" id = "submit">Create   </button>
 
   </div>
 </div>
+
 
 <script>
     window.drugs = <%= raw @d.to_json %>
@@ -146,7 +151,6 @@
     }
 </script>
 
-<%= link_to 'Back', invoices_path %>
 
   </div>
 

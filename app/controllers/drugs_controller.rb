@@ -1,6 +1,6 @@
 class DrugsController < ApplicationController
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-    layout "theme"
+  layout "theme"
   # GET /drugs
   # GET /drugs.json
   def index

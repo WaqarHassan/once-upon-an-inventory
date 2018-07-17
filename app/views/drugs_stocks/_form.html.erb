@@ -1,0 +1,48 @@
+<%= form_for(drugs_stock) do |f| %>
+  <% if drugs_stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(drugs_stock.errors.count, "error") %> prohibited this drugs_stock from being saved:</h2>
+
+      <ul>
+      <% drugs_stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.label :drug %>
+        <%= f.collection_select :drug_id , Drug.all, :id, :generic_name, {include_blank: "Select Drug"}, {class: "form-control", required: true} %>
+      </div>
+      <div class="field">
+        <%= f.label :retail_price %>
+        <%= f.number_field :retail_price, class: "form-control", step: 0.01, required: :true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :total_price %>
+        <%= f.number_field :total_price, class: "form-control", step: 0.01, required: :true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :purchase_price %>
+        <%= f.number_field :purchase_price, class: "form-control", step: 0.01, required: :true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :company %>
+        <%= f.collection_select :company_id, Company.all, :id, :name, {include_blank: "Select Company"}, {class: "form-control", required: true} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :distributor_id %>
+        <%= f.collection_select :distributor_id, Distributor.all, :id, :name, {include_blank: "Select Distributor"}, {class: "form-control", required: true} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit class: "btn btn-submit btn-info pull-right" %>
+      </div>
+    </div>
+  </div>
+<% end %>

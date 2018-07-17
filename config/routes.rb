@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :drugs_stocks
   resources :invoice_drugs
   resources :invoices, except: [:destroy]
   resources :drugs
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   resources :users
 
   
-  root 'dashboard#index'
+  root 'invoices#new'
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'
   # get 'past_orders' => 'orders#old'
