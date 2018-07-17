@@ -2,13 +2,17 @@
 <div class= "row">
   <div class = "col-md-12">
     <div class = "box">
-      <%= link_to invoices_path do%>
-        <i class="fa fa-arrow-left"></i>
-      <%end%>
-      <label>
-        <h3>New Invoice</h3>
-      </label>
-
+      <div class="row">
+        <div class="col-lg-12">
+          <%= link_to invoices_path do%>
+            <i class="fa fa-arrow-left fa-2x"></i>
+            <%end%> 
+         <label style="margin-left:14px">
+             <h3>New Invoice</h3>
+         </label>
+        </div>
+      </div>
+      
 <%# render 'form', invoice: @invoice %>
 <div class="row">
 <div class = "col-md-12">
@@ -67,7 +71,7 @@
       </tr>
       </tbody>
     </table>
-    <button class="btn btn-flat btn-danger" onclick="return checkout();" id = "submit">Create   </button>
+    <button class="btn btn-danger" onclick="return checkout();" id = "submit" style="margin-left:8px">Create   </button>
 
   </div>
 </div>

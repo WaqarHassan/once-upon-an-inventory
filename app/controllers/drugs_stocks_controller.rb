@@ -69,6 +69,6 @@ class DrugsStocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drugs_stock_params
-      params.require(:drugs_stock).permit(:retail_price, :total_price, :purchase_price, :drugs_id, :company_id)
+      params.require(:drugs_stock).permit(:retail_price, :total_price, :purchase_price, :drug_id, :company_id)
     end
 end
