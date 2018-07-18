@@ -19,10 +19,11 @@
         <table class="table table-bordered table-hover" id= "drugs_stock">
           <thead>
           <tr>
+            <th>Drug</th>
+            <th>Quantity</th>
             <th>Retail price</th>
             <th>Total price</th>
             <th>Purchase price</th>
-            <th>Drug</th>
             <th>Company</th>
             <th> Actions </th>
           </tr>
@@ -31,10 +32,11 @@
           <tbody>
           <% @drugs_stocks.each do |drugs_stock| %>
             <tr>
-              <td><%= drugs_stock.retail_price %></td>
-              <td><%= drugs_stock.total_price %></td>
-              <td><%= drugs_stock.purchase_price %></td>
               <td><%= drugs_stock.drug.brand_name %></td>
+              <td><%=drugs_stock.quantity %> </td>
+              <td><%= drugs_stock.retail_price %></td>
+              <td><%= drugs_stock.trade_price %></td>
+              <td><%= drugs_stock.purchase_price %></td>
               <td><%= drugs_stock.company_id %></td>
               <td><%= link_to 'Show', drugs_stock %>
                 <%= link_to 'Edit', edit_drugs_stock_path(drugs_stock) %>

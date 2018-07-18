@@ -19,6 +19,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @d = Hash.new
     Drug.all.map {|d| @d[d.generic_name] = d.retail_price }
+    @all_drugs = Drug.all.as_json
   end
 
   # GET /invoices/1/edit
@@ -31,7 +32,11 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
+        debugger
         params[:invoice_drugs].values.each do |invoice_drug|
+          drug = Drug.find_by(generic_name: invoice_drug["drug_name"])
+          drug.quantity = drug.quantity - invoice_drug["quantity"].to_i
+          drug.save
           @invoice.invoice_drugs.create(drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
         end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }

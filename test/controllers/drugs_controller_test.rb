@@ -17,7 +17,7 @@ class DrugsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create drug" do
     assert_difference('Drug.count') do
-      post drugs_url, params: { drug: { brand_name: @drug.brand_name, company_id: @drug.company_id, generic_name: @drug.generic_name, purchase_price: @drug.purchase_price, retail_price: @drug.retail_price, trade_price: @drug.total_price } }
+      post drugs_url, params: { drug: { brand_name: @drug.brand_name, company_id: @drug.company_id, generic_name: @drug.generic_name, purchase_price: @drug.purchase_price, retail_price: @drug.retail_price, trade_price: @drug.trade_price } }
     end
 
     assert_redirected_to drug_url(Drug.last)
@@ -34,7 +34,7 @@ class DrugsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update drug" do
-    patch drug_url(@drug), params: { drug: { brand_name: @drug.brand_name, company_id: @drug.company_id, generic_name: @drug.generic_name, purchase_price: @drug.purchase_price, retail_price: @drug.retail_price, trade_price: @drug.total_price } }
+    patch drug_url(@drug), params: { drug: { brand_name: @drug.brand_name, company_id: @drug.company_id, generic_name: @drug.generic_name, purchase_price: @drug.purchase_price, retail_price: @drug.retail_price, trade_price: @drug.trade_price } }
     assert_redirected_to drug_url(@drug)
   end
 

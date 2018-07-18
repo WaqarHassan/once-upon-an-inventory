@@ -41,7 +41,7 @@
       <tbody>
       <tr id="hiderow">
         <td colspan="4">
-          <a id="addRow" href="javascript:;" title="Add a row" class="btn btn-primary">Add a row</a>
+          <a id="addRow" href="javascript:;" title="Add a row" class="btn btn-primary">Add Drug</a>
         </td>
       </tr>
       <tr>
@@ -54,7 +54,7 @@
         <td><strong>Total Quantity: </strong><span id="totalQty" style="color: red; font-weight: bold">0</span> Units
         </td>
         <td></td>
-        <td class="text-right"><strong>Discount</strong></td>
+        <td class="text-right"><strong>Discount %</strong></td>
         <td><input class="form-control" id="discount" value="0" type="text"></td>
       </tr>
       <tr class = "hide">
@@ -71,7 +71,7 @@
       </tr>
       </tbody>
     </table>
-    <button class="btn btn-danger" onclick="return checkout();" id = "submit" style="margin-left:8px">Create   </button>
+    <button class="btn btn-danger" onclick="return checkout();" id = "submit" style="margin-left:8px">Create Invoice   </button>
 
   </div>
 </div>
@@ -79,6 +79,7 @@
 
 <script>
     window.drugs = <%= raw @d.to_json %>
+    window.all_drugs = <%= raw @all_drugs.to_json %>
     jQuery().invoice({
         addRow: "#addRow",
         delete: ".delete",
@@ -148,7 +149,7 @@
                 window.location.href  = "/invoices"
             },
             'error': function (response) {
-                alert("Something went wrong. Please contact Waqar! ")
+                alert("Something went wrong. Please contact Developer! ")
                 $("#submit").prop('disabled', false);
             }
         });

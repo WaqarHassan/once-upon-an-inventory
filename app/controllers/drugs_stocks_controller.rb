@@ -28,6 +28,7 @@ class DrugsStocksController < ApplicationController
 
     respond_to do |format|
       if @drugs_stock.save
+        update_drug
         format.html { redirect_to @drugs_stock, notice: 'Drugs stock was successfully created.' }
         format.json { render :show, status: :created, location: @drugs_stock }
       else
@@ -42,6 +43,7 @@ class DrugsStocksController < ApplicationController
   def update
     respond_to do |format|
       if @drugs_stock.update(drugs_stock_params)
+        update_drug
         format.html { redirect_to @drugs_stock, notice: 'Drugs stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @drugs_stock }
       else
@@ -66,9 +68,16 @@ class DrugsStocksController < ApplicationController
     def set_drugs_stock
       @drugs_stock = DrugsStock.find(params[:id])
     end
-
+    def update_drug
+      @drugs_stock.drug.update(drug_params)
+      quantity = @drugs_stock.drug.quantity.to_i + params[:drugs_stock][:quantity].to_i
+      @drugs_stock.drug.update(quantity: quantity)
+    end
+    def drug_params
+      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price,:company_id)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def drugs_stock_params
-      params.require(:drugs_stock).permit(:retail_price, :total_price, :purchase_price, :drug_id, :company_id)
+      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity, :distributor_id)
     end
 end

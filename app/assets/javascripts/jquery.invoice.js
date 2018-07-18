@@ -122,9 +122,12 @@ Invoice.prototype = {
      * @returns {number}
      */
     calcGrandTotal: function () {
-        var grandTotal = Number(jQuery($.opt.subtotal).html())
-                       + Number(jQuery($.opt.shipping).val())
-                       - Number(jQuery($.opt.discount).val());
+        var grandTotal = Number(jQuery($.opt.subtotal).html());
+                       // + Number(jQuery($.opt.shipping).val())
+                       // - Number(jQuery($.opt.discount).val());
+        discount_percentage = Number(jQuery($.opt.discount).val());
+        discount_amount = (grandTotal /100 )* discount_percentage;
+        grandTotal = grandTotal - discount_amount
         grandTotal = self.roundNumber(grandTotal, 2);
 
         jQuery($.opt.grandTotal).html(grandTotal);
