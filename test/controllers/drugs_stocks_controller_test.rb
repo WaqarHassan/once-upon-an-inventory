@@ -17,7 +17,7 @@ class DrugsStocksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create drugs_stock" do
     assert_difference('DrugsStock.count') do
-      post drugs_stocks_url, params: { drugs_stock: { company_id: @drugs_stock.company_id, drugs_id: @drugs_stock.drugs_id, purchase_price: @drugs_stock.purchase_price, retail_price: @drugs_stock.retail_price, total_price: @drugs_stock.total_price } }
+      post drugs_stocks_url, params: { drugs_stock: { company_id: @drugs_stock.company_id, drugs_id: @drugs_stock.drugs_id, purchase_price: @drugs_stock.purchase_price, retail_price: @drugs_stock.retail_price, trade_price: @drugs_stock.trade_price } }
     end
 
     assert_redirected_to drugs_stock_url(DrugsStock.last)
@@ -34,7 +34,7 @@ class DrugsStocksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update drugs_stock" do
-    patch drugs_stock_url(@drugs_stock), params: { drugs_stock: { company_id: @drugs_stock.company_id, drugs_id: @drugs_stock.drugs_id, purchase_price: @drugs_stock.purchase_price, retail_price: @drugs_stock.retail_price, total_price: @drugs_stock.total_price } }
+    patch drugs_stock_url(@drugs_stock), params: { drugs_stock: { company_id: @drugs_stock.company_id, drugs_id: @drugs_stock.drugs_id, purchase_price: @drugs_stock.purchase_price, retail_price: @drugs_stock.retail_price, trade_price: @drugs_stock.trade_price } }
     assert_redirected_to drugs_stock_url(@drugs_stock)
   end
 

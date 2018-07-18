@@ -40,6 +40,7 @@
                     <th>Retail price</th>
                     <th>Total price</th>
                     <th>Purchase price</th>
+                    <th>Quantity</th>
                     <th>Company</th>
                     <th>Actions</th>
                   </tr>
@@ -50,8 +51,9 @@
                         <td><%= drug.brand_name %></td>
                         <td><%= drug.generic_name %></td>
                         <td><%= drug.retail_price %></td>
-                        <td><%= drug.total_price %></td>
+                        <td><%= drug.trade_price %></td>
                         <td><%= drug.purchase_price %></td>
+                        <td><%= drug.quantity %></td>
                         <td><%= drug.company.name %></td>
 <!--                        <td><%#= link_to 'Show', drug %></td>-->
                         <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-xs"%></td>
