@@ -100,18 +100,22 @@
 
         // $("#item").last()
     });
-    $(document).on('focus', ".qty",{}, function (e) {
-        debugger
+    $(document).on('focusin', ".qty",{}, function (e) {
         generic_name =  $(this).parents(".item-row").find(".item").val();
         var self = this;
         $.each(window.all_drugs, function (key, value) {
             if (String(value.generic_name) == generic_name) {
-                debugger
-                $(self).parent().append("<p class = 'red'> "+value.quantity+" units available. </p>")
-                // console.log(value.quantity + value.generic_name)
+                $(self).parent().find(".available_units ").remove();
+                $(self).parent().append("<p class = 'available_units red' id = "+value.quantity +"> "+value.quantity+" units available. </p>")
             }
 
         });
+    })
+    $(document).on('focusout', ".qty",{}, function (e) {
+        if( parseInt($(this).parent().find(".red").attr("id") ) < parseInt($(this).val()))
+        {
+            $(this).val("")
+        }
     })
     $(document).on('focus','.item', {} ,function(e){
         $(e.currentTarget).autocomplete({

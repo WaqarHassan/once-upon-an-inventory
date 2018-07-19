@@ -27,7 +27,8 @@
                   <td><%= invoice.patient_name %></td>
                   <td><%= invoice.age %></td>
                   <td>
-                    <%= link_to "View ", invoice_path(invoice.id), class: "btn btn-block btn-success"%>
+                    <%= link_to "generate pdf", invoice_pdf_path(invoice.id) , class: "btn btn-default" %>
+                    <%= link_to "View ", invoice_path(invoice.id), class: "btn  btn-success"%>
                   </td>
                  </tr>
               <% end %>

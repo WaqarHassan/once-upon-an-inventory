@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-  layout "theme"
+  layout "theme" , except: [:pdf]
+  layout "pdf" ,only: [:pdf]
 
   # GET /invoices
   # GET /invoices.json
@@ -25,6 +26,24 @@ class InvoicesController < ApplicationController
   # GET /invoices/1/edit
   def edit
   end
+  def pdf
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     render pdf: "file_name"   # Excluding ".pdf" extension.
+    #   end
+    # end
+    respond_to do |format|
+        format.pdf do
+          # render pdf: "show.pdf",
+            render pdf: "application-#{@application.id}.pdf",
+            layout: 'pdf',
+            title: 'Application',
+            margin: {:bottom => 15, :top=>15 },
+            show_as_html:  params[:debug].present?
+        end
+    end
+  end
 
   # POST /invoices
   # POST /invoices.json
@@ -32,7 +51,6 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
-        debugger
         params[:invoice_drugs].values.each do |invoice_drug|
           drug = Drug.find_by(generic_name: invoice_drug["drug_name"])
           drug.quantity = drug.quantity - invoice_drug["quantity"].to_i

@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   resources :drugs_stocks
   resources :invoice_drugs
-  resources :invoices, except: [:destroy]
+  resources :invoices, except: [:destroy] do
+    get :pdf
+  end
   resources :drugs
   resources :companies
   resources :distributors
   devise_for :users
   resources :users
-
   
   root 'invoices#new'
   # get 'renew/:id' => 'orders#renew'

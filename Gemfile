@@ -41,3 +41,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sprockets'
 gem 'nokogiri'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

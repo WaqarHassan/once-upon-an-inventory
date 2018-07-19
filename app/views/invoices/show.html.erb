@@ -1,44 +1,58 @@
-<p id="notice"><%= notice %></p>
-<div class = "row">
-  <div class = "col-md-6">
-    <p>
-      <strong>Total:</strong>
-      <%= @invoice.total %>
-    </p>
-    <p>
-      <strong>Patient name:</strong>
-      <%= @invoice.patient_name %>
-    </p>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
 
-    <p>
-      <strong>Age:</strong>
-      <%= @invoice.age %>
-    </p>
-    <p>
-      <strong>Discount:</strong>
-      <%= @invoice.discount %>
-    </p>
+          <p id="notice"><%= notice %></p>
+          <div class = "row callout x`callout-custom">
+            <div class = "col-md-12">
+              <div ju class="col-md-3">
+                <strong>Patient name:</strong>
+                <%= @invoice.patient_name %>
+              </div>
+              <div class="col-md-3">
+                <strong>Age:</strong>
+                <%= @invoice.age %>
+              </div>
+              <div class="col-md-3">
+                <strong>Discount:</strong>
+                <%= @invoice.discount %>
+              </div>
+              <div class="col-md-3">
+                <strong>Total:</strong>
+                <%= @invoice.total %>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered table-hover" id="invoices">
+            <thead>
+            <tr>
+              <th>Drug Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+<!--              <th>Actions</th>-->
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @invoice_drugs.each do |invoice_drug| %>
+              <tr>
+                <td><%= invoice_drug.drug_name %></td>
+                <td><%= invoice_drug.quantity%></td>
+                <td><%= invoice_drug.price %></td>
+<!--                <td><%##= link_to "View ", root_path, class: "btn btn-block btn-success" %></td>-->
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+
+          <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+          <%= link_to 'Back', invoices_path %>
+
+        </div>
+      </div>
+    </div>
   </div>
-  <div class = "col-md-6">
-    <% @invoice_drugs.each do |invoice_drug|%>
-      <p>
-        <strong>Drug name: </strong>
-        <%= invoice_drug.drug_name %>
-      </p>
-      <p>
-        <strong>Quantity: </strong>
-        <%= invoice_drug.quantity %>
-      </p>
-      <p>
-        <strong>Price: </strong>
-        <%= invoice_drug.price%>
-      </p>
-      ----------------------------------
-      <hr>
-    <%end%>
-  </div>
-</div>
-
-
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+</section>
