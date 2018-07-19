@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-  layout "theme" , except: [:pdf]
-  layout "pdf" ,only: [:pdf]
+  layout "theme" #, except: [:pdf]
+  # layout "pdf" ,only: [:pdf]
 
   # GET /invoices
   # GET /invoices.json
