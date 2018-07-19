@@ -37,7 +37,7 @@
               <td><%= drugs_stock.retail_price %></td>
               <td><%= drugs_stock.trade_price %></td>
               <td><%= drugs_stock.purchase_price %></td>
-              <td><%= drugs_stock.company_id %></td>
+              <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
               <td><%= link_to 'Show', drugs_stock %>
                 <%= link_to 'Edit', edit_drugs_stock_path(drugs_stock) %>
                 <% link_to 'Destroy', drugs_stock, method: :delete, data: {confirm: 'Are you sure?'} %></td>
