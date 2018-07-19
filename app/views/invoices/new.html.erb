@@ -100,6 +100,19 @@
 
         // $("#item").last()
     });
+    $(document).on('focus', ".qty",{}, function (e) {
+        debugger
+        generic_name =  $(this).parents(".item-row").find(".item").val();
+        var self = this;
+        $.each(window.all_drugs, function (key, value) {
+            if (String(value.generic_name) == generic_name) {
+                debugger
+                $(self).parent().append("<p class = 'red'> "+value.quantity+" units available. </p>")
+                // console.log(value.quantity + value.generic_name)
+            }
+
+        });
+    })
     $(document).on('focus','.item', {} ,function(e){
         $(e.currentTarget).autocomplete({
             source: availableTags,
