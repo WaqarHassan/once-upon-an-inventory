@@ -24,3 +24,5 @@ Rails.application.config.assets.precompile += %w( jquery.dataTables.min.js )
 Rails.application.config.assets.precompile += %w( dataTables.bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap-datepicker.js )
 Rails.application.config.assets.precompile += %w( datepicker3.css )
+Rails.application.config.assets.precompile += ['bootstrap.css']
+

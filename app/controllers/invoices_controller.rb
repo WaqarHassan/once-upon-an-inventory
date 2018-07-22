@@ -33,14 +33,12 @@ class InvoicesController < ApplicationController
     #     render pdf: "file_name"   # Excluding ".pdf" extension.
     #   end
     # end
+    @invoice = Invoice.find(params[:invoice_id])
     respond_to do |format|
         format.pdf do
-          # render pdf: "show.pdf",
-            render pdf: "application-#{@application.id}.pdf",
-            layout: 'pdf',
-            title: 'Application',
-            margin: {:bottom => 15, :top=>15 },
-            show_as_html:  params[:debug].present?
+            render pdf: "application-#{@invoice.id}.pdf",
+            template: "/invoices/pdf.pdf.erb",
+            layout: 'pdf.html.erb'
         end
     end
   end
@@ -49,13 +47,17 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
+    debugger
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
         params[:invoice_drugs].values.each do |invoice_drug|
           drug = Drug.find_by(generic_name: invoice_drug["drug_name"])
-          drug.quantity = drug.quantity - invoice_drug["quantity"].to_i
-          drug.save
-          @invoice.invoice_drugs.create(drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
+          if drug.present?
+            drug.quantity = drug.quantity - invoice_drug["quantity"].to_i
+            drug.save
+            @invoice.invoice_drugs.create(drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
+          end
+
         end
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: @invoice }
@@ -98,7 +100,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:total, :patient_name, :age, :discount)
+      params.require(:invoice).permit(:total, :patient_name, :age, :discount, :gross)
     end
     def invoice_drug_params invoice_drug
       # invoice_drug.permit("drug_name", "drug_id", "price", "quantity" )

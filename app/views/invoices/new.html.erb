@@ -47,7 +47,7 @@
       <tr>
         <td></td>
         <td></td>
-        <td class="text-right"><strong>Sub Total</strong></td>
+        <td class="text-right"><strong>Gross:</strong></td>
         <td><span id="subtotal">0.00</span></td>
       </tr>
       <tr>
@@ -159,6 +159,7 @@
                   patient_name: $("#patient_name").val(),
                   age: $("#age").val(),
                   discount: $("#discount").val(),
+                  gross: $("#subtotal").text()
               },
               invoice_drugs: invoice_drugs
             },

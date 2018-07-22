@@ -3,7 +3,11 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header with-border">
-
+          <div class = "row">
+            <%= link_to invoice_pdf_path(@invoice,format: :pdf ) , class: "btn btn-bitbucket pull-right" ,target: "_blank"  do%>
+              <span>Generate Pdf</span>
+            <%end%>
+          </div>
           <p id="notice"><%= notice %></p>
           <div class = "row callout x`callout-custom">
             <div class = "col-md-12">

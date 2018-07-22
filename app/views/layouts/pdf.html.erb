@@ -2,15 +2,18 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
-  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  <title>GOGOGOGO</title>
+  <%= wicked_pdf_stylesheet_link_tag "application" -%>
+  <%= wicked_pdf_javascript_include_tag "application" %>
 </head>
 <body onload='number_pages'>
 <div id="header">
-  <%= wicked_pdf_image_tag 'mysite.jpg' %>
+  <%= wicked_pdf_image_tag 'clinic_image.jpg' %>
 </div>
 <div id="content">
-  <%= yield %>
+  <div class = "container">
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>

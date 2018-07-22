@@ -1,0 +1,125 @@
+<style>
+
+  tbody tr:nth-child(odd) {
+    background-color: #efefef;
+  }
+
+  table {
+    table-layout: fixed;
+  }
+
+  table th, table td {
+    overflow: hidden;
+  }
+
+  body {
+    color: #000000;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Calibri, sans-serif;
+    font-size: 24px;
+    line-height: 1.42857;
+  }
+
+  body {
+    align-content: center;
+  }
+
+  table {
+    width: 100%;
+    /*border: 1px solid #999999;*/
+    font-size: 34px;
+  }
+
+  th, td {
+    padding: 7px 7px 7px 7px;
+  }
+
+  th {
+    text-align: left;
+    border-bottom: 1px solid #111111;
+    border-top: 1px solid #999999;
+    font-size: 100%;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    line-height: 1.0;
+  }
+
+  tr {
+    border-bottom: 1px solid #999999;
+    border-top: 1px solid #999999;
+    font-size: 60%;
+    letter-spacing: 0.1em;
+  }
+
+  .stripe {
+    background-color: #dddddd;
+    color: #666666;
+  }
+
+  tr.stripeHover {
+    background-color: #FFFACD;
+
+  }
+
+  .table > tbody > tr.success > td, .table > tbody > tr.success > th {
+    background-color: #dff0d8;
+  }
+
+</style>
+
+
+
+<div class = "row">
+  <div class = "col-lg-10">
+    <br>
+    <div class = "col-lg-3"></div>
+  <div class = "col-lg-3 " style="font-family: 'Century Schoolbook L'">
+    <label>Invoice # :</label>
+    <%=  @invoice.id %>
+  </div>
+  <div class="col-lg-3 pull-right" style="font-family: 'Century Schoolbook L';">
+    <label>Date :</label>
+    <%= @invoice.created_at.to_date %>
+  </div>
+  </div>
+</div>
+  <table class="table table-bordered table-hover" id= "invoices">
+    <thead>
+        <tr>
+          <th>SR#</th>
+          <th>Item Description</th>
+          <th>Qty</th>
+          <th>Rate</th>
+          <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @invoice.invoice_drugs.each do |drug|%>
+      <tr>
+        <td><%= drug.id%></td>
+        <td><%= drug.try(:drug_name)%> </td>
+        <td><%= drug.try(:quantity)%> </td>
+        <td><%= drug.try(:price) %> </td>
+        <td><%= drug.amount%></td>
+      </tr>
+    <%end%>
+    </tbody>
+  </table>
+</div>
+<div class = "container">
+  <div class="pull-right">
+    <label>GROSS: </label>
+    <%= @invoice.gross %>
+  </div>
+  <br/>
+  <br/>
+  <div class="pull-right">
+    <label>Discount(%): </label>
+    <%= @invoice.discount %>
+  </div >
+  <br/>
+  <br/>
+  <div class="pull-right">
+    <label>Total: </label>
+    <%= @invoice.total %>
+  </div>
+</div>
