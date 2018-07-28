@@ -38,7 +38,7 @@ ul.ui-autocomplete {
   li.ui-menu-item{
     padding:0 .5em;
     line-height:2em;
-    font-size:.8em;
+    font-size:1.4em;
     &.ui-state-focus{
       background: #F7F7F7;
     }
@@ -48,4 +48,27 @@ ul.ui-autocomplete {
 
 .hide {
   display: none;
+}
+.ui-state-focus {
+  background: none !important;
+  background-color: blue !important;
+  color: #ffffff !important;
+  border: none !important;
+  //font-size: x-large !important;
+}
+.logo-lg {
+  font-size: large;
+}
+.new-invoice {
+  font-weight: bold;
+}
+.delete-btn a.delete {
+  border-radius: 77%;
+  background: lightgray;
+  padding: 3px;
+  color: red;
+}
+.red {
+  color: red;
+  font-size: large;
 }
