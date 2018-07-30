@@ -108,7 +108,7 @@
 <div class = "container">
   <div class="pull-right">
     <label>GROSS: </label>
-    <%= @invoice.gross %>
+    <%= @invoice.try(:gross) %>
   </div>
   <br/>
   <br/>
