@@ -93,9 +93,9 @@
         </tr>
     </thead>
     <tbody>
-    <% @invoice.invoice_drugs.each do |drug|%>
+    <% @invoice.invoice_drugs.each_with_index do |drug, index|%>
       <tr>
-        <td><%= drug.id%></td>
+        <td><%= index + 1  %></td>
         <td><%= drug.try(:drug_name)%> </td>
         <td><%= drug.try(:quantity)%> </td>
         <td><%= drug.try(:price) %> </td>
@@ -108,7 +108,7 @@
 <div class = "container">
   <div class="pull-right">
     <label>GROSS: </label>
-    <%= @invoice.try(:gross) %>
+    <%= @invoice.gross.to_f %>
   </div>
   <br/>
   <br/>
