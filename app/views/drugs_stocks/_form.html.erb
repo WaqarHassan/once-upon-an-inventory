@@ -15,7 +15,7 @@
     <div class="col-md-6">
       <div class="field">
         <%= f.label :drug %>
-        <%= f.collection_select :drug_id , Drug.all, :id, :generic_name, {include_blank: "Select Drug"}, {class: "form-control", required: true} %>
+        <%= f.collection_select :drug_id , Drug.all, :id, :brand_name, {include_blank: "Select Drug"}, {class: "form-control", required: true} %>
       </div>
       <div class="field">
         <%= f.label :retail_price %>
