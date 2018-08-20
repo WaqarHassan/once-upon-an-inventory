@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :drugs_stocks
-  resources :invoice_drugs
+  resources :drugs_stocks , except: :destroy
+  resources :invoice_drugs , except: :destroy
   resources :invoices, except: [:destroy] do
     get :pdf
   end
-  resources :drugs
-  resources :companies
-  resources :distributors
+  resources :drugs ,except: :destroy
+  resources :companies , except: :destroy
+  resources :distributors , except: :destroy
   devise_for :users
   resources :users
   

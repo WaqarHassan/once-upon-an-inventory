@@ -82,7 +82,7 @@
       <%= @invoice.created_at.to_date.strftime("%d %b, %Y") rescue "" %>
     </div>
     <label>Patient Name:</label>
-    <%= @invoice.patient_name.humanize rescue "" %>
+    <%= @invoice.patient_name.humanize rescue "" %> ( <%= @invoice.age.to_i.to_s + " yrs " rescue "" %>)
   </div>
     <hr/>
   </div>
