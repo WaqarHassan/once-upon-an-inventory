@@ -10,12 +10,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered table-hover" id= "invoices">
+          <table class="<%= table_classes %>" id= "invoices">
             <thead>
               <tr>
-                <th>Total</th>
                 <th>Patient name</th>
                 <th>Age</th>
+                <th>Total</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -23,13 +23,13 @@
             <tbody>
               <% @invoices.each do |invoice| %>
                 <tr>
-                  <td><%= invoice.total %></td>
                   <td><%= invoice.patient_name %></td>
                   <td><%= invoice.age %></td>
+                  <td><%= invoice.total %></td>
                   <td>
-                    <%= link_to invoice_pdf_path(invoice,format: :pdf ) , class: "btn btn-bitbucket pull-right" ,target: "_blank"  do%>
-                      <span>Generate Pdf</span>
-                    <%end%>
+                    <%= link_to "Generate Pdf" , invoice_pdf_path(invoice,format: :pdf ) , class: "btn btn-bitbucket" ,target: "_blank" %>
+<!--                      <span></span>-->
+                    <%#end%>
                     <%= link_to "View ", invoice_path(invoice.id), class: "btn  btn-success"%>
                   </td>
                  </tr>
@@ -43,17 +43,3 @@
 </section>
 
 <br>
-
-<script>
-    $(function () {
-        $("#invoices").DataTable();
-        // $('#example2').DataTable({
-        //     "paging": true,
-        //     "lengthChange": false,
-        //     "searching": false,
-        //     "ordering": true,
-        //     "info": true,
-        //     "autoWidth": false
-        // });
-    });
-</script>

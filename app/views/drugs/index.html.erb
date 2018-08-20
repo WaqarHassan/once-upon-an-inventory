@@ -1,20 +1,4 @@
-    <!-- Content Wrapper. Contains page content -->
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li class="active">
-          <a href="#">
-            <i class="fa fa-home"></i>
-            Home Page</a>
-        </li>
-      </ol>
-    </section>
 
-    <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
             <%#= render partial: "/dashboard/status"%>
@@ -32,14 +16,14 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-hover" id= "drugs">
-                <thead>
+              <table class="<%= table_classes  %>  pretty" id= "drugs">
+                <thead class="thead-dark" >
                   <tr>
                     <th>Brand name</th>
                     <th>Generic name</th>
-                    <th>Retail price</th>
-                    <th>Trade price</th>
-                    <th>Purchase price</th>
+<!--                    <th>Retail price</th>-->
+<!--                    <th>Trade price</th>-->
+<!--                    <th>Purchase price</th>-->
                     <th>Quantity</th>
                     <th>Company</th>
                     <th>Actions</th>
@@ -50,13 +34,13 @@
                       <tr>
                         <td><%= drug.brand_name %></td>
                         <td><%= drug.generic_name %></td>
-                        <td><%= drug.retail_price %></td>
-                        <td><%= drug.trade_price %></td>
-                        <td><%= drug.purchase_price %></td>
+<!--                        <td><%#= drug.retail_price %></td>-->
+<!--                        <td><%#= drug.trade_price %></td>-->
+<!--                        <td><%#= drug.purchase_price %></td>-->
                         <td><%= drug.quantity %></td>
                         <td><%= drug.company.name %></td>
 <!--                        <td><%#= link_to 'Show', drug %></td>-->
-                        <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-xs"%></td>
+                        <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-sm"%></td>
 <!--                        <td><%#= link_to 'X', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
                       </tr>
                     <% end %>
@@ -78,18 +62,5 @@
   <!-- /.content-wrapper -->
   <%= render 'layouts/footer' %>
   <script>
-    $.widget.bridge('uibutton', $.ui.button);
-  </script>
-  <script>
-    $(function () {
-      $("#drugs").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-      });
-    });
+  //   $.widget.bridge('uibutton', $.ui.button);
   </script>

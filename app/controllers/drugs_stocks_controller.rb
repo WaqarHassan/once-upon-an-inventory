@@ -4,7 +4,7 @@ class DrugsStocksController < ApplicationController
   # GET /drugs_stocks
   # GET /drugs_stocks.json
   def index
-    @drugs_stocks = DrugsStock.all
+    @drugs_stocks = DrugsStock.order('created_at DESC')
   end
 
   # GET /drugs_stocks/1

@@ -4,7 +4,7 @@ class DrugsController < ApplicationController
   # GET /drugs
   # GET /drugs.json
   def index
-    @drugs = Drug.all
+    @drugs = Drug.order('created_at DESC')
   end
 
   # GET /drugs/1

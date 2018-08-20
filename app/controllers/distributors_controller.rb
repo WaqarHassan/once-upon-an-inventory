@@ -4,7 +4,7 @@ class DistributorsController < ApplicationController
   # GET /distributors
   # GET /distributors.json
   def index
-    @distributors = Distributor.all
+    @distributors = Distributor.order('created_at DESC')
   end
 
   # GET /distributors/1

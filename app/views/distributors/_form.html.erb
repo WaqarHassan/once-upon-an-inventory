@@ -1,7 +1,7 @@
 <%= form_for(distributor) do |f| %>
   <% if distributor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(distributor.errors.count, "error") %> prohibited this distributor from being saved:</h2>
+      <h2><%=  pluralize(distributor.errors.count, "error") %> prohibited this distributor from being saved:</h2>
 
       <ul>
       <% distributor.errors.full_messages.each do |message| %>
@@ -13,6 +13,7 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
+      <%= render partial: "shared/form_title" %>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name ,class: "form-control" , required: :true%>

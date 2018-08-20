@@ -1,25 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    Dashboard
-    <small>Control panel</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li class="active">
-      <a href="#">
-        <i class="fa fa-home"></i>
-        Home Page</a>
-    </li>
-  </ol>
-</section>
-
-<!-- Main content -->
 <section class="content">
-  <!-- Small boxes (Stat box) -->
-  <%= render partial: "/dashboard/status" %>
-  <!-- /.row -->
-
   <div class="row">
     <div class="col-md-12">
       <div class="box">
@@ -31,7 +10,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered table-hover" id="distributors">
+          <table class="<%= table_classes %>" id="distributors">
             <thead>
             <tr>
               <th>Name</th>
@@ -45,7 +24,7 @@
                 <td>
                   <div class = "row">
                     <div class="col-md-2">
-                      <%= link_to "edit", edit_company_path(company), class: "btn btn-success btn-flat btn-block btn-xs" %>
+                      <%= link_to "Edit", edit_company_path(company), class: "btn btn-success btn-flat btn-block btn-sm " %>
                       <%#= link_to "X", company, method: :delete,data: {confirm: 'Are you sure?'}%>
                     </div>
                   </div>
@@ -69,18 +48,5 @@
 <!-- /.content-wrapper -->
 <%= render 'layouts/footer' %>
 <script>
-    $.widget.bridge('uibutton', $.ui.button);
-</script>
-<script>
-    $(function () {
-        $("#distributors").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
-        });
-    });
+//     $.widget.bridge('uibutton', $.ui.button);
 </script>

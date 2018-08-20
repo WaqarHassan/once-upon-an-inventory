@@ -72,3 +72,13 @@ ul.ui-autocomplete {
   color: red;
   font-size: large;
 }
+table.pretty thead th  {
+  text-align: center;
+  background: #66a9bd;
+}
+table.pretty tbody tr.odd td {
+  background: lightgray;
+}
+table.pretty {
+  font-size: large;
+}

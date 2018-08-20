@@ -6,7 +6,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.order('created_at DESC')
   end
 
   # GET /invoices/1
@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new
     @d = Hash.new
-    Drug.all.map {|d| @d[d.generic_name] = d.retail_price }
+    Drug.all.map {|d| @d[d.brand_name] = d.retail_price }
     @all_drugs = Drug.all.as_json
   end
 
@@ -50,7 +50,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
         params[:invoice_drugs].values.each do |invoice_drug|
-          drug = Drug.find_by(generic_name: invoice_drug["drug_name"])
+          drug = Drug.find_by(brand_name: invoice_drug["drug_name"])
           if drug.present?
             drug.quantity = drug.quantity - invoice_drug["quantity"].to_i
             drug.save

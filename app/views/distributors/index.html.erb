@@ -1,18 +1,4 @@
-    <!-- Content Wrapper. Contains page content -->
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li class="active">
-          <a href="#">
-            <i class="fa fa-home"></i>
-            Home Page</a>
-        </li>
-      </ol>
-    </section>
+
 
     <!-- Main content -->
     <section class="content">
@@ -31,7 +17,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-hover" id= "distributors">
+              <table class="<%= table_classes %>" id= "distributors">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -58,7 +44,7 @@
                       <td><%= d.primary_phone_no%></td>
                       <td><%= d.secondary_phone_number%></td>
                       <td>
-                          <%=link_to  "edit", edit_distributor_path(d) , class: "btn btn-success btn-flat btn-block btn-xs"%>
+                          <%=link_to  "Edit", edit_distributor_path(d) , class: "btn btn-success btn-flat btn-block btn-sm"%>
                         <%= %>
                         <%= %>
                       </td>
@@ -81,18 +67,18 @@
   <!-- /.content-wrapper -->
   <%= render 'layouts/footer' %>
   <script>
-    $.widget.bridge('uibutton', $.ui.button);
+  //   $.widget.bridge('uibutton', $.ui.button);
   </script>
   <script>
     $(function () {
-      $("#distributors").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-      });
-    });
+    //   $("#distributors").DataTable();
+    //   $('#example2').DataTable({
+    //     "paging": true,
+    //     "lengthChange": false,
+    //     "searching": false,
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth": false
+    //   });
+    // });
   </script>
