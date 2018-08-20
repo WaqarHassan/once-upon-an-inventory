@@ -68,22 +68,27 @@
 
 
 
-<div class = "row">
+<div class = "row invoice_pdf">
   <div class = "col-lg-10">
     <br>
     <div class = "col-lg-3"></div>
-  <div class = "col-lg-3 " style="font-family: 'Century Schoolbook L'">
+  <div class = "col-lg-3">
     <label>Invoice # :</label>
     <%=  @invoice.id %>
   </div>
-  <div class="col-lg-3 pull-right" style="font-family: 'Century Schoolbook L';">
-    <label>Date :</label>
-    <%= @invoice.created_at.to_date %>
+  <div class="col-lg-3">
+    <div class="pull-right">
+      <label>Date :</label>
+      <%= @invoice.created_at.to_date.strftime("%d %b, %Y") rescue "" %>
+    </div>
+    <label>Patient Name:</label>
+    <%= @invoice.patient_name.humanize rescue "" %>
   </div>
+    <hr/>
   </div>
 </div>
-  <table class="<%= table_classes %>" id= "invoices">
-    <thead>
+  <table class="table table-bordered table-striped table-hover table-condensed table-bordered table-hover" id= "invoices">
+    <thead style="background: #66a9bd">
         <tr>
           <th>SR#</th>
           <th>Item Description</th>
@@ -107,7 +112,7 @@
 </div>
 <div class = "container">
   <div class="pull-right">
-    <label>GROSS: </label>
+    <label>Gross: </label>
     <%= @invoice.gross.to_f %>
   </div>
   <br/>

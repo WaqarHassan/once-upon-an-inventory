@@ -29,7 +29,7 @@ class DrugsStocksController < ApplicationController
     respond_to do |format|
       if @drugs_stock.save
         update_drug
-        format.html { redirect_to @drugs_stock, notice: 'Drugs stock was successfully created.' }
+        format.html { redirect_to drugs_stock_path, notice: 'Drugs stock was successfully created.' }
         format.json { render :show, status: :created, location: @drugs_stock }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class DrugsStocksController < ApplicationController
     respond_to do |format|
       if @drugs_stock.update(drugs_stock_params)
         update_drug
-        format.html { redirect_to @drugs_stock, notice: 'Drugs stock was successfully updated.' }
+        format.html { redirect_to drugs_stock_path, notice: 'Drugs stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @drugs_stock }
       else
         format.html { render :edit }
