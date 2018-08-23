@@ -15,7 +15,8 @@
               <tr>
                 <th>Patient name</th>
                 <th>Age</th>
-                <th>Total</th>
+                <th>Total Amount</th>
+                <th>Date</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -26,6 +27,7 @@
                   <td><%= invoice.patient_name %></td>
                   <td><%= invoice.age %></td>
                   <td><%= invoice.total %></td>
+                  <td><%= invoice.created_at.strftime(date_format) rescue ""%></td>
                   <td>
                     <%= link_to "Generate Pdf" , invoice_pdf_path(invoice,format: :pdf ) , class: "btn btn-bitbucket" ,target: "_blank" %>
 <!--                      <span></span>-->

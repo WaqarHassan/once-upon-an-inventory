@@ -24,12 +24,14 @@ class DrugsStocksController < ApplicationController
   # POST /drugs_stocks
   # POST /drugs_stocks.json
   def create
+    invoice_date = params["drugs_stock"]["invoice_date"]
+    params["drugs_stock"]["invoice_date"]  = invoice_date.to_date if invoice_date.present? rescue ""
     @drugs_stock = DrugsStock.new(drugs_stock_params)
 
     respond_to do |format|
       if @drugs_stock.save
         update_drug
-        format.html { redirect_to drugs_stock_path, notice: 'Drugs stock was successfully created.' }
+        format.html { redirect_to drugs_stocks_path, notice: 'Drugs stock was successfully created.' }
         format.json { render :show, status: :created, location: @drugs_stock }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class DrugsStocksController < ApplicationController
     respond_to do |format|
       if @drugs_stock.update(drugs_stock_params)
         update_drug
-        format.html { redirect_to drugs_stock_path, notice: 'Drugs stock was successfully updated.' }
+        format.html { redirect_to drugs_stocks_path, notice: 'Drugs stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @drugs_stock }
       else
         format.html { render :edit }
@@ -78,6 +80,6 @@ class DrugsStocksController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def drugs_stock_params
-      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity, :distributor_id)
+      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity, :distributor_id, :invoice_date , :invoice_number)
     end
 end

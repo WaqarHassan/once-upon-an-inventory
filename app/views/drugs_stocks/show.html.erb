@@ -1,6 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Invoice Number:</strong>
+  <%= @drugs_stock.invoice_number  rescue "" %>
+</p>
+<p>
+  <strong>Invoice Date:</strong>
+  <%= @drugs_stock.invoice_date.strftime(date_format) rescue "" %>
+</p>
+
+<p>
+  <strong>Drugs:</strong>
+  <%= @drugs_stock.drug.brand_name  rescue ""%>
+</p>
+
+<p>
   <strong>Retail price:</strong>
   <%= @drugs_stock.retail_price %>
 </p>
@@ -16,13 +30,8 @@
 </p>
 
 <p>
-  <strong>Drugs:</strong>
-  <%= @drugs_stock.drug.brand_name %>
-</p>
-
-<p>
   <strong>Company:</strong>
-  <%= @drugs_stock.company_id %>
+  <%= @drugs_stock.company.name rescue "" %>
 </p>
 
 <%= link_to 'Edit', edit_drugs_stock_path(@drugs_stock) %> |
