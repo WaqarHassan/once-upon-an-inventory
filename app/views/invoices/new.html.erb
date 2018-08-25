@@ -24,6 +24,10 @@
     <label>Age</label>
     <%= text_field_tag :age ,nil, class: "form-control", placeholder: "Patient Age" %>
   </div>
+  <div class = "col-md-4">
+    <%= label_tag :invoice_date %>
+    <%= text_field_tag :invoice_date,nil, class: "form-control datepicker" %>
+  </div>
 </div>
 </div>
 <br>
@@ -158,6 +162,7 @@
                   total: $("#grandTotal").text(),
                   patient_name: $("#patient_name").val(),
                   age: $("#age").val(),
+                  invoice_date: $("#invoice_date").val(),
                   discount: $("#discount").val(),
                   gross: $("#subtotal").text()
               },

@@ -13,9 +13,10 @@
           <table class="<%= table_classes %>" id= "invoices">
             <thead>
               <tr>
+                <th>Invoice Number</th>
                 <th>Patient name</th>
                 <th>Age</th>
-                <th>Total Amount</th>
+                <th>Amount</th>
                 <th>Date</th>
                 <th>Actions</th>
               </tr>
@@ -24,14 +25,13 @@
             <tbody>
               <% @invoices.each do |invoice| %>
                 <tr>
+                  <td><%= "##{invoice.id}"%></td>
                   <td><%= invoice.patient_name %></td>
                   <td><%= invoice.age %></td>
                   <td><%= invoice.total %></td>
-                  <td><%= invoice.created_at.strftime(date_format) rescue ""%></td>
+                  <td><%= invoice.invoice_date.to_date.strftime(date_format) rescue ""%></td>
                   <td>
                     <%= link_to "Generate Pdf" , invoice_pdf_path(invoice,format: :pdf ) , class: "btn btn-bitbucket" ,target: "_blank" %>
-<!--                      <span></span>-->
-                    <%#end%>
                     <%= link_to "View ", invoice_path(invoice.id), class: "btn  btn-success"%>
                   </td>
                  </tr>

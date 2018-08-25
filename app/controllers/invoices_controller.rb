@@ -46,6 +46,8 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
+    invoice_date = params["invoice"]["invoice_date"]
+    params["invoice"]["invoice_date"]  = invoice_date.to_date if invoice_date.present? rescue ""
     @invoice = Invoice.new(invoice_params)
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
@@ -99,7 +101,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:total, :patient_name, :age, :discount, :gross)
+      params.require(:invoice).permit(:total, :patient_name, :age, :discount, :gross, :invoice_date)
     end
     def invoice_drug_params invoice_drug
       # invoice_drug.permit("drug_name", "drug_id", "price", "quantity" )

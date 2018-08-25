@@ -6,7 +6,7 @@ module ApplicationHelper
      controller.action_name.humanize.to_s + " " + controller_name.humanize.singularize rescue ""
   end
   def date_format
-    '%l %b, %Y'
+    '%d %b, %Y'
   end
 end
 
