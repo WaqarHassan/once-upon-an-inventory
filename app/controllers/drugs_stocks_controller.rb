@@ -45,7 +45,8 @@ class DrugsStocksController < ApplicationController
   def update
     respond_to do |format|
       if @drugs_stock.update(drugs_stock_params)
-        update_drug
+        # update_drug     # This line fucked me . update edited drug stock . messed up!
+        @drugs_stock.drug.update(drug_params)
         format.html { redirect_to drugs_stocks_path, notice: 'Drugs stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @drugs_stock }
       else
