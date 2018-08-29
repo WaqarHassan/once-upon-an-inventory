@@ -18,4 +18,13 @@ class Drug < ApplicationRecord
 		end
 		puts ids
 	end
+	def normalize
+		total_purchase_quantity = DrugsStock.where(drug_id: self.id).sum(:quantity).to_i
+		total_sold_quantity = InvoiceDrug.where(drug_id: self.id).sum(:quantity).to_i
+		expected_drug_quantity = total_purchase_quantity - total_sold_quantity
+		if self.quantity != expected_drug_quantity
+			drug.update(quantity: expected_drug_quantity)
+		end
+		puts self.id
+	end
 end
