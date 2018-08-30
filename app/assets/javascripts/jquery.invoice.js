@@ -89,7 +89,6 @@ Invoice.prototype = {
              var qty = jQuery(this).val();
              if (!isNaN(qty)) totalQty += Number(qty);
          });
-
          totalQty = self.roundNumber(totalQty, 2);
 
          jQuery($.opt.totalQty).html(totalQty);
@@ -174,7 +173,8 @@ Invoice.prototype = {
      * @param decimals
      * @returns {*}
      */
-    roundNumber: function (number, decimals) {
+    roundNumber: function(number, decimals) {return (number).toFixed(decimals)},
+    roundNumber1: function (number, decimals) {
         var newString;// The new rounded number
         decimals = Number(decimals);
 
