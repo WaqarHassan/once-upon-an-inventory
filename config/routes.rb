@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :distributors , except: :destroy
   devise_for :users
   resources :users
-  
+  # get "/reports" => "reports#index" , as: :reports_index
+  resources :reports , only: [:index]
   root 'invoices#new'
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'
