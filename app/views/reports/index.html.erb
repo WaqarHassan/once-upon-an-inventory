@@ -1,13 +1,40 @@
-
-<div class = "content">
-  <div class= "row">
-    <div class = "col-md-12">
-      <div class = "box new-invoice">
-        <h1>Reports </h1>
-          <p><strong>Work In Progress.</strong></p>
-          <%#= label_tag :Start_date %>
-          <%#= text_field_tag :invoice_date, nil, class: "form-control datepicker" %>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h1 class="box-title">Reports </h1>
+          <div class="col-md-2 pull-right">
+            <%= link_to "New Invoice", new_invoice_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
+          </div>
+        </div>
+        <div class="box-body">
+          <%#= form_tag new_report_path %>
+            <div class="row">
+              <div class="col-md-2">
+                <%= label_tag :Start_Date %>
+                <%= text_field_tag :start_date, nil, class: "form-control datepicker" %>
+              </div>
+              <div class="col-md-2">
+                <%= label_tag :End_Date %>
+                <%= text_field_tag :end_date, nil, class: "form-control datepicker" %>
+              </div>
+              <div class = "col-md-8">
+                <label class="container1 form-control ">Stock Report
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container1 form-control  ">Sales Report
+                  <input type="radio" name="radio">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          <%#end%>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<br>
