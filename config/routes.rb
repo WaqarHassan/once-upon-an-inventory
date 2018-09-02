@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   # get "/reports" => "reports#index" , as: :reports_index
-  resources :reports , only: [:index]
+  resources :reports , only: [] do
+    collection do |c|
+      match :generate , via: [:get, :post]
+    end
+  end
   root 'invoices#new'
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'

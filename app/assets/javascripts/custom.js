@@ -3,6 +3,10 @@ $(document).ready(function(){
         "order": []
     }
     $("#distributors , #invoices, #drugs ,#drugs_stock").DataTable(data_table_options );
+    $("#invoices_report,#drugs_stock_report").DataTable({
+        "paging":   false,
+        "info": false,
+    });
     $(".datepicker").datepicker({
         format: "dd/mm/yyyy"
     });

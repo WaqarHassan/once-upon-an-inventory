@@ -93,7 +93,7 @@ table.pretty {
 
 
 
-.container1 {
+label.container1 {
   //display: block;
   position: relative;
   padding-left: 35px;
@@ -154,4 +154,7 @@ label.container1 .checkmark:after {
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+div.mt-20 {
+  margin-top: 26px;
 }

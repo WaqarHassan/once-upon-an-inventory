@@ -4,34 +4,99 @@
       <div class="box">
         <div class="box-header with-border">
           <h1 class="box-title">Reports </h1>
-          <div class="col-md-2 pull-right">
-            <%= link_to "New Invoice", new_invoice_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
-          </div>
+<!--          <div class="col-md-2 pull-right">-->
+            <%#= link_to "New Invoice", new_invoice_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
+<!--          </div>-->
         </div>
         <div class="box-body">
-          <%#= form_tag new_report_path %>
+          <%= form_tag generate_reports_path do %>
             <div class="row">
               <div class="col-md-2">
-                <%= label_tag :Start_Date %>
-                <%= text_field_tag :start_date, nil, class: "form-control datepicker" %>
+                <%= label_tag :start_Date %>
+                <%= text_field_tag :start_date, nil, class: "form-control datepicker" , value: params[:start_date] %>
               </div>
               <div class="col-md-2">
-                <%= label_tag :End_Date %>
-                <%= text_field_tag :end_date, nil, class: "form-control datepicker" %>
+                <%= label_tag :end_Date %>
+                <%= text_field_tag :end_date, nil, class: "form-control datepicker" , value: params[:end_date] %>
               </div>
-              <div class = "col-md-8">
-                <label class="container1 form-control ">Stock Report
-                  <input type="radio" checked="checked" name="radio">
+              <div class = "col-md-5 mt-20">
+                <label class="container1 ">Stock Report
+                  <input type="radio" <%= @drugs_stocks.present? ? 'checked' : 'false' %> name="type" value= "stock" >
                   <span class="checkmark"></span>
                 </label>
-                <label class="container1 form-control  ">Sales Report
-                  <input type="radio" name="radio">
+                <label class="container1">Sales Report
+                  <input type="radio" <%= @Invoices.present? ? 'checked' : 'false' %> name="type" value= "sales" >
                   <span class="checkmark"></span>
                 </label>
+                <%= submit_tag :generate, class: "btn btn-success pull-right" %>
               </div>
             </div>
-          <%#end%>
+          <%end%>
         </div>
+        <hr>
+        <%if @Invoices.present?%>
+          <div class="box-header with-border">
+            <h1 class="box-title"><strong>Sales Report </strong> </h1>
+          </div>
+          <table class="<%= table_classes %>" id="invoices_report">
+            <thead>
+            <tr>
+              <th>Invoice Number</th>
+              <th>Patient name</th>
+              <th>Age</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @Invoices.each do |invoice| %>
+              <tr>
+                <td><%= "##{invoice.id}" %></td>
+                <td><%= invoice.patient_name %></td>
+                <td><%= invoice.age %></td>
+                <td><%= invoice.total %></td>
+                <td><%= invoice.invoice_date.to_date.strftime(date_format) rescue "" %></td>
+              </tr>
+            <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="3" style="text-align:right">Total:</th>
+                <th><%= number_with_precision(@Invoices.sum(:total), precision: 3) %></th>
+              </tr>
+            </tfoot>
+          </table>
+        <%elsif @drugs_stocks.present?%>
+          <table class="<%= table_classes %>" id="drugs_stock_report">
+            <thead>
+            <tr>
+              <th>Invoice Number</th>
+              <th>Invoice Date</th>
+              <th>Drug</th>
+              <th>Quantity</th>
+              <th>Retail Price</th>
+              <th>Trade Price</th>
+              <th>Purchase Price</th>
+              <th>Company</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @drugs_stocks.each do |drugs_stock| %>
+              <tr>
+                <td><%= drugs_stock.invoice_number %></td>
+                <td><%= drugs_stock.invoice_date.strftime(date_format) rescue "" %></td>
+                <td><%= drugs_stock.drug.brand_name %></td>
+                <td><%= drugs_stock.quantity %> </td>
+                <td><%= drugs_stock.retail_price %></td>
+                <td><%= drugs_stock.trade_price %></td>
+                <td><%= drugs_stock.purchase_price %></td>
+                <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <%end%>
       </div>
     </div>
   </div>
