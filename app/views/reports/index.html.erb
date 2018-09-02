@@ -36,7 +36,7 @@
         <hr>
         <%if @Invoices.present?%>
           <div class="box-body">
-            <h3 class="box-title"><strong>Stock Report </strong></h3>
+            <h3 class="box-title"><strong>Sales Report </strong></h3>
           <table class="<%= table_classes %>" id="invoices_report">
             <thead>
             <tr>
@@ -76,10 +76,12 @@
                 <th>Invoice Date</th>
                 <th>Drug</th>
                 <th>Quantity</th>
+                <th>Remaining Quantity</th>
                 <th>Retail Price</th>
                 <th>Trade Price</th>
                 <th>Purchase Price</th>
                 <th>Company</th>
+                <th>Comments</th>
               </tr>
               </thead>
 
@@ -90,16 +92,18 @@
                   <td><%= drugs_stock.invoice_date.strftime(date_format) rescue "" %></td>
                   <td><%= drugs_stock.drug.brand_name %></td>
                   <td><%= drugs_stock.quantity %> </td>
+                  <td><%= drugs_stock.try(:drug).try(:quantity) %> </td>
                   <td><%= drugs_stock.retail_price %></td>
                   <td><%= drugs_stock.trade_price %></td>
                   <td><%= drugs_stock.purchase_price %></td>
                   <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
+                  <td></td>
                 </tr>
               <% end %>
               </tbody>
               <tfoot>
               <tr>
-                <th colspan="3" style="text-align:right">Total:</th>
+                <th colspan="4" style="text-align:right">Total:</th>
                 <th><%= number_with_precision(@drugs_stocks.sum(:quantity), precision: 3) %></th>
                 <th><%= number_with_precision(@drugs_stocks.sum(:retail_price), precision: 3) %></th>
                 <th><%= number_with_precision(@drugs_stocks.sum(:trade_price), precision: 3) %></th>
