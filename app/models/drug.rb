@@ -1,4 +1,5 @@
 class Drug < ApplicationRecord
+	acts_as_paranoid
   belongs_to :company
 	has_many :distributor_drugs
 	has_many :distributors, through: :distributor_drugs

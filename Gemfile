@@ -43,3 +43,5 @@ gem 'sprockets'
 gem 'nokogiri'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem "paranoia", "~> 2.2"
+

@@ -110,6 +110,8 @@ GEM
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    paranoia (2.4.1)
+      activerecord (>= 4.0, < 5.3)
     pg (0.19.0)
     puma (3.8.2)
     rack (2.0.5)
@@ -206,6 +208,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   nokogiri
+  paranoia (~> 2.2)
   pg
   puma (~> 3.0)
   rails (~> 5.0.2)
