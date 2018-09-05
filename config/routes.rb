@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :drugs_stocks , except: :destroy
-  resources :invoice_drugs , except: :destroy
-  resources :invoices, except: [:destroy] do
+  resources :drugs_stocks #, except: :destroy
+  resources :invoice_drugs #, except: :destroy
+  resources :invoices do
     get :pdf
   end
-  resources :drugs ,except: :destroy
-  resources :companies , except: :destroy
-  resources :distributors , except: :destroy
+  resources :drugs #,except: :destroy
+  resources :companies #, except: :destroy
+  resources :distributors #, except: :destroy
   devise_for :users
   resources :users
   # get "/reports" => "reports#index" , as: :reports_index

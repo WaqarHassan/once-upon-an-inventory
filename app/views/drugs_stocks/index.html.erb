@@ -36,7 +36,7 @@
             <tr>
               <td><%= drugs_stock.invoice_number %></td>
               <td><%= drugs_stock.invoice_date.strftime(date_format) rescue "" %></td>
-              <td><%= drugs_stock.drug.brand_name %></td>
+              <td><%= drugs_stock.try(:drug).try(:brand_name )%></td>
               <td><%= drugs_stock.quantity %> </td>
               <td><%= drugs_stock.retail_price %></td>
               <td><%= drugs_stock.trade_price %></td>

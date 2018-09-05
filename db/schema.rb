@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180825100610) do
+ActiveRecord::Schema.define(version: 20180905182219) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_companies_on_deleted_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -47,6 +49,8 @@ ActiveRecord::Schema.define(version: 20180825100610) do
     t.string   "secondary_phone_number"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_distributors_on_deleted_at"
   end
 
   create_table "drugs", force: :cascade do |t|
@@ -60,7 +64,9 @@ ActiveRecord::Schema.define(version: 20180825100610) do
     t.datetime "updated_at",                 null: false
     t.integer  "distributor_id"
     t.integer  "quantity",       default: 0
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_drugs_on_company_id"
+    t.index ["deleted_at"], name: "index_drugs_on_deleted_at"
     t.index ["distributor_id"], name: "index_drugs_on_distributor_id"
   end
 
@@ -76,6 +82,8 @@ ActiveRecord::Schema.define(version: 20180825100610) do
     t.integer  "quantity"
     t.date     "invoice_date"
     t.string   "invoice_number"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_drugs_stocks_on_deleted_at"
     t.index ["distributor_id"], name: "index_drugs_stocks_on_distributor_id"
     t.index ["drug_id"], name: "index_drugs_stocks_on_drug_id"
   end
@@ -88,6 +96,8 @@ ActiveRecord::Schema.define(version: 20180825100610) do
     t.float    "quantity"
     t.float    "price"
     t.integer  "invoice_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_invoice_drugs_on_deleted_at"
     t.index ["drug_id"], name: "index_invoice_drugs_on_drug_id"
     t.index ["invoice_id"], name: "index_invoice_drugs_on_invoice_id"
   end
@@ -101,6 +111,8 @@ ActiveRecord::Schema.define(version: 20180825100610) do
     t.float    "discount"
     t.float    "gross"
     t.date     "invoice_date"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_invoices_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
