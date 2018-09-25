@@ -41,19 +41,27 @@
             <thead>
             <tr>
               <th>Invoice Number</th>
-              <th>Patient name</th>
-              <th>Age</th>
+              <th>Patient Name</th>
               <th>Amount</th>
+              <th>Net Discount</th>
+              <th>Profit</th>
               <th>Date</th>
             </tr>
             </thead>
             <tbody>
-            <% @Invoices.each do |invoice| %>
+            <% total_profit = 0.0
+              @Invoices.each do |invoice| %>
               <tr>
-                <td><%= "##{invoice.id}" %></td>
-                <td><%= invoice.patient_name %></td>
-                <td><%= invoice.age %></td>
+                <td><%= link_to "##{invoice.id}" , invoice_path(invoice.id) %></td>
+                <td><%= invoice.patient_name.try(:humanize) %> (<%=invoice.age %>)</td>
                 <td><%= invoice.total %></td>
+                  <% total_drugs_discount= invoice.invoice_drugs.sum(:discount)
+                   net_drugs_discount = total_drugs_discount - invoice.discount
+                   profit = number_with_precision(invoice.total * (net_drugs_discount / 100), precision: 2).to_f rescue 0
+                   total_profit += profit
+                  %>
+                <td><%=  net_drugs_discount %></td>
+                <td><%= profit %></td>
                 <td><%= invoice.invoice_date.to_date.strftime(date_format) rescue "" %></td>
               </tr>
             <% end %>
@@ -62,6 +70,7 @@
               <tr>
                 <th colspan="3" style="text-align:right">Total:</th>
                 <th><%= number_with_precision(@Invoices.sum(:total), precision: 3) %></th>
+                <th><%=total_profit %> </th>
               </tr>
             </tfoot>
           </table>

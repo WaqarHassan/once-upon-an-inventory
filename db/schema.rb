@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905182219) do
+ActiveRecord::Schema.define(version: 20180925164713) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -60,11 +60,12 @@ ActiveRecord::Schema.define(version: 20180905182219) do
     t.float    "trade_price"
     t.float    "purchase_price"
     t.integer  "company_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "distributor_id"
     t.integer  "quantity",       default: 0
     t.datetime "deleted_at"
+    t.float    "discount",       default: 15.0
     t.index ["company_id"], name: "index_drugs_on_company_id"
     t.index ["deleted_at"], name: "index_drugs_on_deleted_at"
     t.index ["distributor_id"], name: "index_drugs_on_distributor_id"
@@ -76,13 +77,14 @@ ActiveRecord::Schema.define(version: 20180905182219) do
     t.float    "purchase_price"
     t.integer  "drug_id"
     t.integer  "company_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "distributor_id"
     t.integer  "quantity"
     t.date     "invoice_date"
     t.string   "invoice_number"
     t.datetime "deleted_at"
+    t.float    "discount",       default: 15.0
     t.index ["deleted_at"], name: "index_drugs_stocks_on_deleted_at"
     t.index ["distributor_id"], name: "index_drugs_stocks_on_distributor_id"
     t.index ["drug_id"], name: "index_drugs_stocks_on_drug_id"
@@ -91,12 +93,13 @@ ActiveRecord::Schema.define(version: 20180905182219) do
   create_table "invoice_drugs", force: :cascade do |t|
     t.string   "drug_name"
     t.integer  "drug_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.float    "quantity"
     t.float    "price"
     t.integer  "invoice_id"
     t.datetime "deleted_at"
+    t.float    "discount",   default: 15.0
     t.index ["deleted_at"], name: "index_invoice_drugs_on_deleted_at"
     t.index ["drug_id"], name: "index_invoice_drugs_on_drug_id"
     t.index ["invoice_id"], name: "index_invoice_drugs_on_invoice_id"

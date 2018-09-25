@@ -56,7 +56,7 @@ class InvoicesController < ApplicationController
           if drug.present?
             drug.quantity = drug.quantity - invoice_drug["quantity"].to_i
             drug.save
-            @invoice.invoice_drugs.create(drug_id: drug.id,  drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
+            @invoice.invoice_drugs.create(drug_id: drug.id, discount: drug.discount, drug_name: invoice_drug["drug_name"], quantity: invoice_drug["quantity"], price: invoice_drug["price"])
           end
 
         end
