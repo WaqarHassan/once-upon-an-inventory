@@ -28,6 +28,13 @@
                 <%= @invoice.total %>
               </div>
             </div>
+<!--            <div class="col-md-12">-->
+<!--              <div class="col-md-9"></div>-->
+<!--              <div class="col-md-3">-->
+<!--                <strong>Profit</strong>-->
+                <%#= @invoice.get_profit %>
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <table class="<%= table_classes %>" id="invoices">
             <thead>
@@ -35,6 +42,10 @@
               <th>Drug Name</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Total</th>
+              <th>Drug Discount </th>
+              <th>Profit </th>
+              <th>Profit Amount</th>
 <!--              <th>Actions</th>-->
             </tr>
             </thead>
@@ -45,10 +56,22 @@
                 <td><%= invoice_drug.drug_name %></td>
                 <td><%= invoice_drug.quantity%></td>
                 <td><%= invoice_drug.price %></td>
-<!--                <td><%##= link_to "View ", root_path, class: "btn btn-block btn-success" %></td>-->
+                <td><%= invoice_drug.price * invoice_drug.quantity%></td>
+                <td><%= invoice_drug.discount %> %</td>
+                <td><%= invoice_drug.discount - @invoice.discount %> %</td>
+                <td><%= invoice_drug.get_profit %></td>
+<!--                <td><%##= link_to "View ", root_path, class:  "btn btn-block btn-success" %></td>-->
               </tr>
             <% end %>
             </tbody>
+            <tfoot style="background: lightsteelblue">
+            <tr>
+              <th colspan="3" style="text-align:right">Total:</th>
+              <th> <%= @invoice.invoice_drugs.map{|id| id.price * id.quantity }.sum %> </th>
+              <th colspan="2" style="text-align:right">Total:</th>
+              <th><%= @invoice.get_profit %></th>
+            </tr>
+            </tfoot>
           </table>
 
 
