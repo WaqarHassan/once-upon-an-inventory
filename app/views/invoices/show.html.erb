@@ -56,7 +56,7 @@
                 <td><%= invoice_drug.drug_name %></td>
                 <td><%= invoice_drug.quantity%></td>
                 <td><%= invoice_drug.price %></td>
-                <td><%= invoice_drug.price * invoice_drug.quantity%></td>
+                <td><%= (invoice_drug.price * invoice_drug.quantity).round(2) %></td>
                 <td><%= invoice_drug.discount %> %</td>
                 <td><%= invoice_drug.discount - @invoice.discount %> %</td>
                 <td><%= invoice_drug.get_profit %></td>
