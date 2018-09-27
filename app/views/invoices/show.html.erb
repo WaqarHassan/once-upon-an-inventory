@@ -59,7 +59,7 @@
                 <td><%= (invoice_drug.price * invoice_drug.quantity).round(2) %></td>
                 <td><%= invoice_drug.discount %> %</td>
                 <td><%= invoice_drug.discount - @invoice.discount %> %</td>
-                <td><%= invoice_drug.get_profit %></td>
+                <td><%= invoice_drug.get_profit.round(2) rescue "error" %></td>
 <!--                <td><%##= link_to "View ", root_path, class:  "btn btn-block btn-success" %></td>-->
               </tr>
             <% end %>
