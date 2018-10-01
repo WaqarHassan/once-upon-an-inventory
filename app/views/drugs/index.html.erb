@@ -25,7 +25,6 @@
                     <th>Trade Price</th>
                     <th>Purchase Price</th>
                     <th>Quantity</th>
-                    <th>Discount</th>
                     <th>Company</th>
                     <th>Actions</th>
                   </tr>
@@ -39,7 +38,6 @@
                         <td><%= drug.trade_price %></td>
                         <td><%= drug.purchase_price %></td>
                         <td><%= drug.quantity %></td>
-                        <td><%= drug.discount %></td>
                         <td><%= drug.try(:company).try(:name )%></td>
 <!--                        <td><%#= link_to 'Show', drug %></td>-->
                         <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-sm"%></td>

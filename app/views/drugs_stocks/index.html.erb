@@ -22,7 +22,6 @@
             <th>Retail Price</th>
             <th>Trade Price</th>
             <th>Purchase Price</th>
-            <th>Vendor Discount</th>
             <th>Company</th>
             <th>Actions</th>
           </tr>
@@ -38,7 +37,6 @@
               <td><%= drugs_stock.retail_price %></td>
               <td><%= drugs_stock.trade_price %></td>
               <td><%= drugs_stock.purchase_price %></td>
-              <td><%= drugs_stock.discount %> </td>
               <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
               <td><%= link_to 'Show', drugs_stock , class: "btn btn-success btn-flat btn-block btn-sm"%>
                 <% link_to 'Edit', edit_drugs_stock_path(drugs_stock) , class: "btn btn-warning  btn-flat btn-block btn-sm"%>
