@@ -1,11 +1,19 @@
 class Invoice < ApplicationRecord
+
   acts_as_paranoid
+
   has_many :invoice_drugs, dependent: :destroy
+
   def get_profit
     invoice_drugs.map{|id| (id.get_profit rescue 0.0)}.sum rescue "error"
   end
+
   def get_discount
     invoice_drugs.map{|id| id.discount - discount}.sum rescue "error"
+  end
+
+  def drugs
+    self.invoice_drugs
   end
 end
 

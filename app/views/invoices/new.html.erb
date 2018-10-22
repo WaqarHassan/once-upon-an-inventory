@@ -109,7 +109,7 @@
         $.each(window.all_drugs, function (key, value) {
             if (String(value.brand_name) == brand_name) {
                   $(self).parent().find(".available_units ").remove();
-                $(self).parent().append("<p class = 'available_units red' id = "+value.quantity +"> "+value.quantity+" units available. </p>")
+                $(self).parent().append("<p class = 'available_units info' id = "+value.quantity +"> "+value.quantity+" units available. </p>")
             }
 
         });
@@ -117,7 +117,7 @@
     })
     //-----------< check if Entered quantity is greater than available quantity >-------------------
     $(document).on('focusout', ".qty",{}, function (e) {
-        if( parseInt($(this).parent().find(".red").attr("id") ) < parseInt($(this).val()))
+        if( parseInt($(this).parent().find(".info").attr("id") ) < parseInt($(this).val()))
         {
             $(this).val("")
         }
