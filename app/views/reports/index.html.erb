@@ -13,11 +13,11 @@
             <div class="row">
               <div class="col-md-2">
                 <%= label_tag :start_Date %>
-                <%= text_field_tag :start_date, nil, class: "form-control datepicker" ,:required => true , value: params[:start_date]%>
+                <%= text_field_tag :start_date, nil, class: "form-control datepicker" ,:autocomplete => :off,:required => true , value: params[:start_date]%>
               </div>
               <div class="col-md-2">
                 <%= label_tag :end_Date %>
-                <%= text_field_tag :end_date, nil, class: "form-control datepicker" ,:required => true , value: params[:end_date]%>
+                <%= text_field_tag :end_date, nil, class: "form-control datepicker" ,:autocomplete => :off,:required => true , value: params[:end_date]%>
               </div>
               <div class = "col-md-5 mt-20">
                 <label class="container1 ">Stock Report
