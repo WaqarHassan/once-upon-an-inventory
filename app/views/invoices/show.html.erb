@@ -67,9 +67,9 @@
             <tfoot style="background: lightsteelblue">
             <tr>
               <th colspan="3" style="text-align:right">Total:</th>
-              <th> <%= @invoice.invoice_drugs.map{|id| id.price * id.quantity }.sum %> </th>
+              <th> <%= @invoice.invoice_drugs.map{|id| id.price * id.quantity }.sum.round(2) %> </th>
               <th colspan="2" style="text-align:right">Total:</th>
-              <th><%= @invoice.get_profit %></th>
+              <th><%= @invoice.get_profit.round(3) %></th>
             </tr>
             </tfoot>
           </table>
