@@ -69,8 +69,8 @@
             <tfoot>
               <tr>
                 <th colspan="2" style="text-align:right">Total:</th>
-                <th><%= number_with_precision(@Invoices.sum(:total), precision: 3) %></th>
-                <th><%=@Invoices.map{|i| (i.get_profit rescue 0.0 )}.sum.round(2) %> </th>
+                <th><%#= number_with_precision(@Invoices.sum(:total), precision: 3) %></th>
+                <th><%#=@Invoices.map{|i| (i.get_profit rescue 0.0 )}.sum.round(2) %> </th>
               </tr>
             </tfoot>
           </table>
