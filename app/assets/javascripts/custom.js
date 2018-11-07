@@ -24,7 +24,7 @@ $(document).ready(function(){
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
-                    }, 0 );
+                    }, 0 ).toFixed(2);
 
                 // Total over this page
                 pageTotal = api
@@ -32,7 +32,7 @@ $(document).ready(function(){
                     .data()
                     .reduce( function (a, b) {
                         return intVal(a) + intVal(b);
-                    }, 0 );
+                    }, 0 ).toFixed(2);
 
                 // Update footer
                 $( api.column( column_number ).footer() ).html(
