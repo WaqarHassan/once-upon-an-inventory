@@ -18,26 +18,35 @@ $(document).ready(function(){
                         i : 0;
             };
 
-            // Total over all pages
-            total = api
-                .column( 2 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+            var get_sum = function(column_number) {
+                total = api
+                    .column( column_number )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
 
-            // Total over this page
-            pageTotal = api
-                .column( 2, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+                // Total over this page
+                pageTotal = api
+                    .column( column_number, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
 
-            // Update footer
-            $( api.column( 2 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
-            );
+                // Update footer
+                $( api.column( column_number ).footer() ).html(
+                    '$'+pageTotal +' ( $'+ total +' total)'
+                );
+            }
+            get_sum(2)
+            get_sum(3)
+            if($("#drugs_stock_report").length > 0) {
+                get_sum(4)
+                get_sum(5)
+                get_sum(6)
+                get_sum(7)
+            }
         }
     });
     $(".datepicker").datepicker({
