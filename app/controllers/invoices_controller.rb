@@ -86,15 +86,15 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice.drugs.each do |invoice_drug|
-      invoice_drug.drug.update(quantity: ((invoice_drug.quantity.to_i rescue 0) + (invoice_drug.drug.quantity.to_i rescue 0)) )
-      # invoice_drug.drug.update(quantity: (invoice_drug.quantity.to_i  + invoice_drug.drug.quantity.to_i))
-    end
-    @invoice.destroy
-    respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @invoice.drugs.each do |invoice_drug|
+    #   invoice_drug.drug.update(quantity: ((invoice_drug.quantity.to_i rescue 0) + (invoice_drug.drug.quantity.to_i rescue 0)) )
+    #   # invoice_drug.drug.update(quantity: (invoice_drug.quantity.to_i  + invoice_drug.drug.quantity.to_i))
+    # end
+    # @invoice.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
