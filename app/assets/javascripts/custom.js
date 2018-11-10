@@ -36,7 +36,7 @@ $(document).ready(function(){
 
                 // Update footer
                 $( api.column( column_number ).footer() ).html(
-                    '$'+pageTotal +' ( $'+ total +' total)'
+                    '<span class="text-green">' +pageTotal +'</span></span> <span class="gray-text"> ( '+ total +' total) </span>'
                 );
             }
             get_sum(2)
