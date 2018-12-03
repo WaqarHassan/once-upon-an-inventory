@@ -3,7 +3,7 @@ $(document).ready(function(){
         "order": [],
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
     }
-    $("#distributors, #invoices, #drugs").DataTable(data_table_options );
+    $("#distributors, #invoices").DataTable(data_table_options );
     $("#invoices_report, #drugs_stock_report").DataTable({
         "paging":   false,
         "info": false,
@@ -51,7 +51,7 @@ $(document).ready(function(){
     });
 
 
-    $("#drugs_stock").DataTable({
+    $("#drugs_stock  ,#drugs").DataTable({
         // "paging":   false,
         // "info": false,
         "order": [],
@@ -88,7 +88,9 @@ $(document).ready(function(){
                     '<span class="text-green">' +pageTotal +'</span></span> <span class="gray-text"> ( '+ total +' total) </span>'
                 );
             }
-            // get_sum(2)
+            if($("#drugs").length > 0) {
+                get_sum(2)
+            }
             get_sum(3)
             get_sum(4)
             get_sum(5)
