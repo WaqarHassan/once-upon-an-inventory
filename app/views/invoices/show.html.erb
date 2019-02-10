@@ -12,12 +12,13 @@
           <div class = "row callout x`callout-custom">
             <div class = "col-md-12">
               <div ju class="col-md-3">
-                <strong>Patient name:</strong>
-                <%= @invoice.patient_name %>
+                <strong>Patient name / Age :</strong>
+                <%= @invoice.patient_name %> /
+                <%=@invoice.age %>
               </div>
               <div class="col-md-3">
-                <strong>Age:</strong>
-                <%= @invoice.age %>
+                <strong>Date:</strong>
+                <%= @invoice.invoice_date.strftime("%d %b, %Y") %>
               </div>
               <div class="col-md-3">
                 <strong>Discount:</strong>
