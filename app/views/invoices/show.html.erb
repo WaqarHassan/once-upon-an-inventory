@@ -12,12 +12,13 @@
           <div class = "row callout x`callout-custom">
             <div class = "col-md-12">
               <div ju class="col-md-3">
-                <strong>Patient name:</strong>
-                <%= @invoice.patient_name %>
+                <strong>Patient name / Age :</strong>
+                <%= @invoice.patient_name %> /
+                <%=@invoice.age %>
               </div>
               <div class="col-md-3">
-                <strong>Age:</strong>
-                <%= @invoice.age %>
+                <strong>Date:</strong>
+                <%= @invoice.invoice_date.strftime("%d %b, %Y") %>
               </div>
               <div class="col-md-3">
                 <strong>Discount:</strong>
@@ -44,7 +45,7 @@
               <th>Price</th>
               <th>Total</th>
               <th>Drug Discount </th>
-              <th>Profit </th>
+<!--              <th>Profit </th>-->
               <th>Profit Amount</th>
 <!--              <th>Actions</th>-->
             </tr>
@@ -58,7 +59,7 @@
                 <td><%= invoice_drug.price %></td>
                 <td><%= (invoice_drug.price * invoice_drug.quantity).round(2) %></td>
                 <td><%= invoice_drug.discount %> %</td>
-                <td><%= invoice_drug.discount - @invoice.discount %> %</td>
+<!--                <td><%#= invoice_drug.discount - @invoice.discount %> %</td>-->
                 <td><%= invoice_drug.get_profit.round(2) rescue "error" %></td>
 <!--                <td><%##= link_to "View ", root_path, class:  "btn btn-block btn-success" %></td>-->
               </tr>
@@ -68,7 +69,7 @@
             <tr>
               <th colspan="3" style="text-align:right">Total:</th>
               <th> <%= @invoice.invoice_drugs.map{|id| id.price * id.quantity }.sum.round(2) %> </th>
-              <th colspan="2" style="text-align:right">Total:</th>
+              <th colspan="1" style="text-align:right">Total:</th>
               <th><%= @invoice.get_profit.round(3) %></th>
             </tr>
             </tfoot>
