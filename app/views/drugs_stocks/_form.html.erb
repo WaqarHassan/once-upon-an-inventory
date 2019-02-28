@@ -45,8 +45,12 @@
         <%= f.number_field :quantity, class: "form-control", step: 0.01, required: :true %>
       </div>
       <div class="field">
-        <%= f.label :disocunt%>
+        <%= f.label :discount%>
         <%= f.number_field :discount, class: "form-control", step: 0.01, required: :true %>
+      </div>
+      <div class="field">
+        <%= f.label :additional_discount%>
+        <%= f.number_field :additional_discount, class: "form-control", step: 0.01, required: :true %>
       </div>
       <div class="form-group">
         <%= f.label :company %>

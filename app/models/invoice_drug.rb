@@ -7,10 +7,10 @@ class InvoiceDrug < ApplicationRecord
   end
   def get_profit
     total_amount= quantity * price #100
-    # invoice_discount_amount = total_amount * (invoice.discount / 100)
-    # remaining_amount = total_amount - invoice_discount_amount
+    invoice_discount_amount = total_amount * (invoice.discount / 100)
+    remaining_amount = total_amount - invoice_discount_amount
     #
-    # profit_discount  = discount - invoice.discount
-    ((total_amount) * (discount  / 100)).round(2)
+    profit_discount  = discount - invoice.discount
+    ((total_amount) * (profit_discount  / 100)).round(2)
   end
 end
