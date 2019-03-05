@@ -27,7 +27,6 @@ class DrugsStocksController < ApplicationController
     invoice_date = params["drugs_stock"]["invoice_date"]
     params["drugs_stock"]["invoice_date"]  = invoice_date.to_date if invoice_date.present? rescue ""
     @drugs_stock = DrugsStock.new(drugs_stock_params)
-
     respond_to do |format|
       if @drugs_stock.save
         update_drug
@@ -73,14 +72,17 @@ class DrugsStocksController < ApplicationController
     end
     def update_drug
       @drugs_stock.drug.update(drug_params)
+      # debugger
       quantity = @drugs_stock.drug.quantity.to_i + params[:drugs_stock][:quantity].to_i
-      @drugs_stock.drug.update(quantity: quantity , discount: @drugs_stock.discount)
+      discount = @drugs_stock.discount + (100 - @drugs_stock.discount) * (@drugs_stock.additional_discount.to_f / 100)
+      # debugger
+      @drugs_stock.drug.update(quantity: quantity , discount: discount)
     end
     def drug_params
       params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price,:company_id)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def drugs_stock_params
-      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity,:discount ,:distributor_id, :invoice_date , :invoice_number)
+      params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity,:discount ,:additional_discount,:distributor_id, :invoice_date , :invoice_number)
     end
 end

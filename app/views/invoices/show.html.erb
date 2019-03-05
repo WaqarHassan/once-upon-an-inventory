@@ -22,7 +22,7 @@
               </div>
               <div class="col-md-3">
                 <strong>Discount:</strong>
-                <%= @invoice.discount %>
+                <%= @invoice.discount %>%
               </div>
               <div class="col-md-3">
                 <strong>Total:</strong>
@@ -45,8 +45,9 @@
               <th>Price</th>
               <th>Total</th>
               <th>Drug Discount </th>
-<!--              <th>Profit </th>-->
-              <th>Profit Amount</th>
+              <th>Customer Discount</th>
+              <th>Profit </th>
+<!--              <th>Profit Amount</th>-->
 <!--              <th>Actions</th>-->
             </tr>
             </thead>
@@ -58,9 +59,10 @@
                 <td><%= invoice_drug.quantity%></td>
                 <td><%= invoice_drug.price %></td>
                 <td><%= (invoice_drug.price * invoice_drug.quantity).round(2) %></td>
-                <td><%= invoice_drug.discount %> %</td>
-<!--                <td><%#= invoice_drug.discount - @invoice.discount %> %</td>-->
-                <td><%= invoice_drug.get_profit.round(2) rescue "error" %></td>
+                <td><%= get_drug_discount(invoice_drug) %> (<%= invoice_drug.discount %>%)</td>
+                <td><%= get_customer_discount(invoice_drug) %> (<%= @invoice.discount %>%)</td>
+                <td> <%= invoice_drug.get_profit.round(2) rescue "error" %> (<%= invoice_drug.discount - @invoice.discount %>%)</td>
+                <td></td>
 <!--                <td><%##= link_to "View ", root_path, class:  "btn btn-block btn-success" %></td>-->
               </tr>
             <% end %>
@@ -69,7 +71,9 @@
             <tr>
               <th colspan="3" style="text-align:right">Total:</th>
               <th> <%= @invoice.invoice_drugs.map{|id| id.price * id.quantity }.sum.round(2) %> </th>
-              <th colspan="1" style="text-align:right">Total:</th>
+              <th> <%= @invoice.invoice_drugs.map{|invoice_drug| get_drug_discount(invoice_drug) }.sum.round(2) %> </th>
+              <th> <%= @invoice.invoice_drugs.map{|invoice_drug| get_customer_discount(invoice_drug) }.sum.round(2) %> </th>
+<!--              <th colspan="1" style="text-align:right">Total:</th>-->
               <th><%= @invoice.get_profit.round(3) %></th>
             </tr>
             </tfoot>
