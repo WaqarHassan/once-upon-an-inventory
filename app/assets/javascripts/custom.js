@@ -41,9 +41,11 @@ $(document).ready(function(){
             }
             get_sum(2)
             get_sum(3)
+            get_sum(4)
+            get_sum(5)
             if($("#drugs_stock_report").length > 0) {
-                get_sum(4)
-                get_sum(5)
+                // get_sum(4)
+                // get_sum(5)
                 get_sum(6)
                 get_sum(7)
             }
