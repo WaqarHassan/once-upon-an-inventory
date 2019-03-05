@@ -57,7 +57,7 @@
                 <% total_amount = (invoice.total / (100 - invoice.discount) * invoice.discount) + invoice.total %>
                 <td><%= link_to "##{invoice.id}" , invoice_path(invoice.id) %></td>
                 <td><%= invoice.patient_name.try(:humanize) %> (<%=invoice.age %>)</td>
-                <td><%= total_amount %></td>
+                <td><%= total_amount.round(2) %></td>
                 <%# total_drugs_discount= invoice.invoice_drugs.sum(:discount)
                     net_drugs_discount = total_drugs_discount - invoice.discount
                     profit = number_with_precision(invoice.total * (net_drugs_discount / 100), precision: 2).to_f rescue 0
