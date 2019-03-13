@@ -18,15 +18,15 @@
 <div class = "col-md-12">
   <div class = "col-md-4">
     <label>Patient Name</label>
-    <%= text_field_tag :patient_name ,nil, class: "form-control", placeholder: "Patient Name" %>
+    <%= text_field_tag :patient_name ,nil, class: "form-control",:autocomplete => :off, placeholder: "Patient Name" %>
   </div>
   <div class = "col-md-4">
     <label>Age</label>
-    <%= text_field_tag :age ,nil, class: "form-control", placeholder: "Patient Age" %>
+    <%= text_field_tag :age ,nil, class: "form-control",:autocomplete => :off, placeholder: "Patient Age" %>
   </div>
   <div class = "col-md-4">
     <%= label_tag :invoice_date %>
-    <%= text_field_tag :invoice_date,nil, class: "form-control datepicker" %>
+    <%= text_field_tag :invoice_date,nil, class: "form-control datepicker",:autocomplete => :off %>
   </div>
 </div>
 </div>
