@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
   root 'invoices#new'
+  get "/drugs/:id/normalize_stock" => "drugs#normalize_stock"
+
   # get 'renew/:id' => 'orders#renew'
   # get 'return/:id' => 'orders#disable'
   # get 'past_orders' => 'orders#old'

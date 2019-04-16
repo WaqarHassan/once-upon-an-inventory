@@ -1,5 +1,5 @@
 class DrugsController < ApplicationController
-  before_action :set_drug, only: [:show, :edit, :update, :destroy]
+  before_action :set_drug, only: [:show, :edit, :update, :destroy, :normalize_stock]
   layout "theme"
   # GET /drugs
   # GET /drugs.json
@@ -59,6 +59,11 @@ class DrugsController < ApplicationController
       format.html { redirect_to drugs_url, notice: 'Drug was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def normalize_stock
+    @drug.normalize
+    redirect_to edit_drug_path(@drug)
   end
 
   private
