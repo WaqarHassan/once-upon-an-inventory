@@ -11,6 +11,9 @@
     </div>
   <% end %>
   <div class = "row">
+    <%if drug.persisted? %>
+      <a class="btn btn-danger btn-sm" href="/drugs/<%=drug.id%>/normalize_stock" style="margin-top: 25px">Balance Stock</a>
+      <%end %>
     <div class = "col-md-3"></div>
     <div class="col-md-6">
       <%= render partial: "shared/form_title"%>
