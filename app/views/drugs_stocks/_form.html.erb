@@ -20,7 +20,7 @@
       </div>
       <div class="field">
         <%= f.label :invoice_date%>
-        <%= f.text_field :invoice_date , class: "form-control datepicker" %>
+        <%= f.text_field :invoice_date , class: "form-control datepicker" ,value: Date.today.strftime("%d/%m/%Y")  %>
       </div>
       <div class="field">
         <%= f.label :drug %>
