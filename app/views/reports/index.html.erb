@@ -17,7 +17,7 @@
               </div>
               <div class="col-md-2">
                 <%= label_tag :end_Date %>
-                <%= text_field_tag :end_date, nil, class: "form-control datepicker" ,:autocomplete => :off,:required => true , value: (params[:start_date] || Date.today.strftime("%d/%m/%Y") )%>
+                <%= text_field_tag :end_date, nil, class: "form-control datepicker" ,:autocomplete => :off,:required => true , value: (params[:end_date] || Date.today.strftime("%d/%m/%Y") )%>
               </div>
               <div class = "col-md-5 mt-20">
                 <label class="container1 ">Stock Report
