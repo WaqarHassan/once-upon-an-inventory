@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :delete]
   layout "theme" #, except: [:pdf]
   # layout "pdf" ,only: [:pdf]
 
@@ -26,19 +26,35 @@ class InvoicesController < ApplicationController
   # GET /invoices/1/edit
   def edit
   end
+
+  def delete
+    if request.post?
+      if params[:authentication_token] == ENV['DELETE_INVOICE_TOKEN']
+        drug_ids = @invoice.invoice_drugs.pluck(:drug_id)
+        #delete Invocie Drugs
+        @invoice.invoice_drugs.map{|i_d| i_d.destroy!}
+        #update Drug_stock
+        Drug.where(id: drug_ids).map{|d| d.normalize}
+        #delete Invoice
+        @invoice.destroy
+        respond_to do  |format|
+          format.html { redirect_to invoices_path, notice: 'Invoice was successfully created.' }
+        end
+      else
+        respond_to do  |format|
+          format.html { redirect_to delete_invoice_path, notice: 'Access Denied.' }
+        end
+      end
+    end
+  end
+
   def pdf
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     render pdf: "file_name"   # Excluding ".pdf" extension.
-    #   end
-    # end
     @invoice = Invoice.find(params[:invoice_id])
     respond_to do |format|
         format.pdf do
-            render pdf: "application-#{@invoice.id}.pdf",
-            template: "/invoices/pdf.pdf.erb",
-            layout: 'pdf.html.erb'
+          render pdf: "application-#{@invoice.id}.pdf",
+          template: "/invoices/pdf.pdf.erb",
+          layout: 'pdf.html.erb'
         end
     end
   end

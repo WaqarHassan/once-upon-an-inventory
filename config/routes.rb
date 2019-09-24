@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :drugs_stocks #, except: :destroy
   resources :invoice_drugs #, except: :destroy
-  resources :invoices do
+  resources :invoices , only: [:index, :show, :create, :new] do
     get :pdf
+    member do
+      match :delete , via: [:get, :post]
+    end
   end
   resources :drugs #,except: :destroy
   resources :companies #, except: :destroy
