@@ -111,7 +111,7 @@ GEM
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
     pg (1.1.4)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -213,7 +213,7 @@ DEPENDENCIES
   nokogiri
   paranoia (~> 2.2)
   pg
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.2)
   rails_12factor
   sass-rails (~> 5.0)
