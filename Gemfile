@@ -38,10 +38,15 @@ group :production do
   gem 'pg'
 end
 
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-passenger'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sprockets'
 gem 'nokogiri'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem "paranoia", "~> 2.2"
-
