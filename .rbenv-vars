@@ -1,1 +1,1 @@
-DATABASE_URL=postgresql://deploy:@haha/inv
+DATABASE_URL=postgresql://deploy:haha@127.0.0.1/inv
