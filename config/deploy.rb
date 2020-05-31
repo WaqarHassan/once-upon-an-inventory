@@ -13,6 +13,9 @@ set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/ubuntu/#{fetch :application}"
+# TO restart Phusion Passenger
+set :passenger_restart_with_touch, true # in deploy.rb
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
