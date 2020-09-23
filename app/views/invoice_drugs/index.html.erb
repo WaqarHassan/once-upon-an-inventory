@@ -1,29 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Invoice Drugs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Drug name</th>
-      <th>Drug</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invoice_drugs.each do |invoice_drug| %>
+<div class ="box-body">
+  <table class="<%= table_classes %>" id= "drugs_stock">
+    <thead>
       <tr>
-        <td><%= invoice_drug.drug_name %></td>
-        <td><%= invoice_drug.drug %></td>
-        <td><%= link_to 'Show', invoice_drug %></td>
-        <td><%= link_to 'Edit', edit_invoice_drug_path(invoice_drug) %></td>
-        <td><%= link_to 'Destroy', invoice_drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Invoice number</th>
+        <th>Drug name</th>
+        <th>Invoice Date</th>
+        <th>quantity</th>
+        <th>company</th>
+        <%# <th colspan="3">Actions</th> %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% 
+      @invoice_drugs.each do |invoice_drug| %>
+        <tr>
+           <td><%= invoice_drug.invoice.id %></td>
+           <td><%= invoice_drug.drug_name %></td>
+           <td><%= invoice_drug.invoice.invoice_date.strftime(date_format) rescue "" %></td>
+           <td><%= invoice_drug.quantity %> </td>
+            <%# <td><%= Company.find(drugs_stock.company_id).name rescue "" %>
+           <td><%= invoice_drug.drug.company.try(:name)%></td>
+           <%# <td><%= link_to 'Show', invoice_drug %>
+         
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
-<%= link_to 'New Invoice Drug', new_invoice_drug_path %>

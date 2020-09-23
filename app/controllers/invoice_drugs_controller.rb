@@ -1,6 +1,6 @@
 class InvoiceDrugsController < ApplicationController
   before_action :set_invoice_drug, only: [:show, :edit, :update, :destroy]
-
+  layout "theme"
   # GET /invoice_drugs
   # GET /invoice_drugs.json
   def index
@@ -10,6 +10,7 @@ class InvoiceDrugsController < ApplicationController
   # GET /invoice_drugs/1
   # GET /invoice_drugs/1.json
   def show
+    
   end
 
   # GET /invoice_drugs/new
@@ -19,6 +20,7 @@ class InvoiceDrugsController < ApplicationController
 
   # GET /invoice_drugs/1/edit
   def edit
+  
   end
 
   # POST /invoice_drugs
