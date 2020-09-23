@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   resources :drugs_stocks #, except: :destroy
   resources :invoice_drugs #, except: :destroy
   resources :invoices , only: [:index, :show, :create, :new] do
@@ -26,3 +26,9 @@ Rails.application.routes.draw do
   # get 'past_orders' => 'orders#old'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
+#  <%= link_to "Improve Your Ruby Skills", drug_path(id: 2) %>
+
+#  <%= link_to "Improve Your Ruby Skills", edit_book_path(id: @book.id) %> 
+ 
+#  <%= link_to "Improve Your Ruby Skills", @books  %>
