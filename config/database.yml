@@ -1,15 +1,17 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: 5
   timeout: 5000
+  username: postgres
+  password: root
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: inv_development
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: inv_tests
 
 production:
     <<: *default

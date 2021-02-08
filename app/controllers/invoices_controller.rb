@@ -6,7 +6,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.order('created_at DESC')
+    @pagy, @invoices = pagy(Invoice.order('created_at DESC'))
   end
 
   # GET /invoices/1

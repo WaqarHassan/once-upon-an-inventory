@@ -17,6 +17,8 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'pagy', '~> 3.5'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -25,7 +27,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  gem 'sqlite3'
+  gem 'pg', '~> 1.2', '>= 1.2.3'
   gem 'figaro'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -33,10 +35,10 @@ group :development do
   gem "binding_of_caller"
 end
 
-group :production do
-  gem 'rails_12factor'
-  gem 'pg'
-end
+# group :production do
+#   gem 'rails_12factor'
+#   gem 'pg'
+# end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sprockets'
