@@ -1,9 +1,12 @@
 $(document).ready(function(){
     data_table_options = {
         "order": [],
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     }
-    $("#distributors, #invoices").DataTable(data_table_options );
+    $("#invoices").DataTable({
+        "bPaginate": false
+    });
+    $("#distributors").DataTable(data_table_options );
     $("#invoices_report, #drugs_stock_report").DataTable({
         "paging":   false,
         "info": false,
