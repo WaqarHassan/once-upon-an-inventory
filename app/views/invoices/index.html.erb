@@ -10,7 +10,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table class="<%= table_classes %>" id= "invoices">
+          <table class="<%= table_classes %>" id= "invoices-datatable", data-source="<%= invoices_path(format: :json) %>">
             <thead>
               <tr>
                 <th>Invoice Number</th>
@@ -21,25 +21,9 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <% @invoices.each do |invoice| %>
-                <tr>
-                  <td><%= "##{invoice.id}"%></td>
-                  <td><%= invoice.patient_name %></td>
-                  <td><%= invoice.age %></td>
-                  <td><%= invoice.total %></td>
-                  <td><%= invoice.invoice_date.to_date.strftime(date_format) rescue ""%></td>
-                  <td>
-                    <%= link_to "Generate Pdf" , invoice_pdf_path(invoice,format: :pdf ) , class: "btn btn-bitbucket" ,target: "_blank" %>
-                    <%= link_to "View ", invoice_path(invoice.id), class: "btn  btn-success"%>
-                    <%= link_to "Delete" , delete_invoice_path(invoice) , class: "btn btn-danger"  %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
           </table>
           <div class="lsc-pagination">
-            <%== pagy_bootstrap_nav(@pagy)%>
+            <%# <%== pagy_bootstrap_nav(@pagy)%>
           </div>
         </div>
       </div>

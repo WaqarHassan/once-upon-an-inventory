@@ -1,4 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: distributor_drugs
+#
+#  id             :integer          not null, primary key
+#  distributor_id :integer
+#  drug_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
 
 one:
   distributor_id: 1

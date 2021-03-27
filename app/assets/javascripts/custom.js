@@ -3,8 +3,21 @@ $(document).ready(function(){
         "order": [],
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     }
-    $("#invoices").DataTable({
-        "bPaginate": false
+    $("#invoices-datatable").DataTable({
+        "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#invoices-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "invoice_number"},
+      {"data": "patient_name"},
+      {"data": "age"},
+      {"data": "amount"},
+      {"data": "date"},
+    //   {"data": "actions"}
+    ]
     });
     $("#distributors").DataTable(data_table_options );
     $("#invoices_report, #drugs_stock_report").DataTable({

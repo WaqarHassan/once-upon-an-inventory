@@ -6,7 +6,10 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @pagy, @invoices = pagy(Invoice.order('created_at DESC'))
+    respond_to do |format|
+      format.html
+      format.json { render json: InvoicesDatatable.new(params) }
+    end
   end
 
   # GET /invoices/1
