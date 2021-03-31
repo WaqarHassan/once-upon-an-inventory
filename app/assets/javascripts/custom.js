@@ -16,7 +16,7 @@ $(document).ready(function(){
       {"data": "age"},
       {"data": "amount"},
       {"data": "date"},
-    //   {"data": "actions"}
+      {"data": "dt_action"}
     ]
     });
     $("#distributors").DataTable(data_table_options );
