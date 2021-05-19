@@ -37,10 +37,10 @@ group :development do
   gem "binding_of_caller"
 end
 
-# group :production do
-#   gem 'rails_12factor'
-#   gem 'pg'
-# end
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sprockets'
