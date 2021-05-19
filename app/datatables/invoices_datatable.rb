@@ -30,7 +30,7 @@ class InvoicesDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    Invoice.includes(:invoice_drugs)
+    Invoice.includes(:invoice_drugs).order(created_at: :desc)
   end
 
   def action_column(record)
