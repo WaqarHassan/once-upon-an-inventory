@@ -12,15 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20190228195434) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
+    t.index ["deleted_at"], name: "index_companies_on_deleted_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "distributor_drugs", force: :cascade do |t|
@@ -53,7 +50,7 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_distributors_on_deleted_at", using: :btree
+    t.index ["deleted_at"], name: "index_distributors_on_deleted_at"
   end
 
   create_table "drugs", force: :cascade do |t|
@@ -69,9 +66,9 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.integer  "quantity",       default: 0
     t.datetime "deleted_at"
     t.float    "discount",       default: 15.0
-    t.index ["company_id"], name: "index_drugs_on_company_id", using: :btree
-    t.index ["deleted_at"], name: "index_drugs_on_deleted_at", using: :btree
-    t.index ["distributor_id"], name: "index_drugs_on_distributor_id", using: :btree
+    t.index ["company_id"], name: "index_drugs_on_company_id"
+    t.index ["deleted_at"], name: "index_drugs_on_deleted_at"
+    t.index ["distributor_id"], name: "index_drugs_on_distributor_id"
   end
 
   create_table "drugs_stocks", force: :cascade do |t|
@@ -89,9 +86,9 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.datetime "deleted_at"
     t.float    "discount",            default: 15.0
     t.float    "additional_discount", default: 0.0
-    t.index ["deleted_at"], name: "index_drugs_stocks_on_deleted_at", using: :btree
-    t.index ["distributor_id"], name: "index_drugs_stocks_on_distributor_id", using: :btree
-    t.index ["drug_id"], name: "index_drugs_stocks_on_drug_id", using: :btree
+    t.index ["deleted_at"], name: "index_drugs_stocks_on_deleted_at"
+    t.index ["distributor_id"], name: "index_drugs_stocks_on_distributor_id"
+    t.index ["drug_id"], name: "index_drugs_stocks_on_drug_id"
   end
 
   create_table "invoice_drugs", force: :cascade do |t|
@@ -104,9 +101,9 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.integer  "invoice_id"
     t.datetime "deleted_at"
     t.float    "discount",   default: 15.0
-    t.index ["deleted_at"], name: "index_invoice_drugs_on_deleted_at", using: :btree
-    t.index ["drug_id"], name: "index_invoice_drugs_on_drug_id", using: :btree
-    t.index ["invoice_id"], name: "index_invoice_drugs_on_invoice_id", using: :btree
+    t.index ["deleted_at"], name: "index_invoice_drugs_on_deleted_at"
+    t.index ["drug_id"], name: "index_invoice_drugs_on_drug_id"
+    t.index ["invoice_id"], name: "index_invoice_drugs_on_invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -119,7 +116,7 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.float    "gross"
     t.date     "invoice_date"
     t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_invoices_on_deleted_at", using: :btree
+    t.index ["deleted_at"], name: "index_invoices_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -136,14 +133,8 @@ ActiveRecord::Schema.define(version: 20190228195434) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "drugs", "companies"
-  add_foreign_key "drugs", "distributors"
-  add_foreign_key "drugs_stocks", "distributors"
-  add_foreign_key "drugs_stocks", "drugs"
-  add_foreign_key "invoice_drugs", "drugs"
-  add_foreign_key "invoice_drugs", "invoices"
 end
