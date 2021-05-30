@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   def table_classes
     "table table-bordered table-striped table-hover table-condensed table-bordered table-hover pretty"

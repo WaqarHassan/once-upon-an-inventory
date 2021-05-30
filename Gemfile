@@ -17,15 +17,19 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'pagy', '~> 3.5'
+gem 'byebug'
+gem 'ajax-datatables-rails', '~> 1.3', '>= 1.3.1'
+gem 'annotate'
 
-group :development, :test do
-  gem 'byebug', platform: :mri
-end
+# group :development, :test do
+#   gem 'byebug', platform: [:mri, :mingw]
+# end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  gem 'sqlite3'
+  gem 'pg', '~> 1.2', '>= 1.2.3'
   gem 'figaro'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
