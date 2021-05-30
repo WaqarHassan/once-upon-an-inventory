@@ -29,7 +29,7 @@ gem 'annotate'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  gem 'pg', '~> 1.2', '>= 1.2.3'
+  gem 'pg'#, '~> 1.2', '>= 1.2.3'
   gem 'figaro'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
