@@ -19,6 +19,27 @@ $(document).ready(function(){
       {"data": "dt_action"}
     ]
     });
+
+    $("#drug-stocks-datatable").DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+          "url": $('#drugs-stocks-datatable').data('source')
+        },
+        "pagingType": "full_numbers",
+        "columns": [
+          {"data": "invoice_number"},
+          {"data": "invoice_date"},
+          {"data": "drug"},
+          {"data": "quantity"},
+          {"data": "retail_price"},
+          {"data": "trade_price"},
+          {"data": "purchase_price"},
+          {"data": "company"},
+          {"data": "dt_action"}
+        ]
+    });
+
     $("#distributors").DataTable(data_table_options );
     $("#invoices_report, #drugs_stock_report").DataTable({
         "paging":   false,
@@ -69,7 +90,7 @@ $(document).ready(function(){
     });
 
 
-    $("#drugs_stock  ,#drugs").DataTable({
+    $("#drugs").DataTable({
         // "paging":   false,
         // "info": false,
         "order": [],

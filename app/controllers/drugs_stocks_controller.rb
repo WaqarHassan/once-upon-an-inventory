@@ -4,7 +4,11 @@ class DrugsStocksController < ApplicationController
   # GET /drugs_stocks
   # GET /drugs_stocks.json
   def index
-    @drugs_stocks = DrugsStock.order('created_at DESC')
+    # @drugs_stocks = DrugsStock.order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.json { render json: DrugsStocksDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /drugs_stocks/1

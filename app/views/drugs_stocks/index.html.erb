@@ -5,14 +5,14 @@
   <div class="col-md-12">
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">Stock History (<%= @drugs_stocks.count %>)</h3>
+        <h3 class="box-title">Stock History </h3>
         <div class="col-md-2 pull-right">
           <%= link_to "Add Stock Item", new_drugs_stock_path, class: "btn btn-block btn-flat btn-primary pull-right" %>
         </div>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table class="<%= table_classes %>" id= "drugs_stock">
+        <table class="<%= table_classes %>" id= "drug-stocks-datatable", data-source="<%= drugs_stocks_path(format: :json) %>">
           <thead>
           <tr>
             <th>Invoice Number</th>
@@ -22,37 +22,10 @@
             <th>Retail Price</th>
             <th>Trade Price</th>
             <th>Purchase Price</th>
-            <th>Company</th>
+            <th>Company</th> 
             <th>Actions</th>
           </tr>
           </thead>
-
-          <tbody>
-          <% @drugs_stocks.each do |drugs_stock| %>
-            <tr>
-              <td><%= drugs_stock.invoice_number %></td>
-              <td><%= drugs_stock.invoice_date.strftime(date_format) rescue "" %></td>
-              <td><%= drugs_stock.try(:drug).try(:brand_name )%></td>
-              <td><%= drugs_stock.quantity %> </td>
-              <td><%= drugs_stock.retail_price %></td>
-              <td><%= drugs_stock.trade_price %></td>
-              <td><%= drugs_stock.purchase_price %></td>
-              <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
-              <td><%= link_to 'Show', drugs_stock , class: "btn btn-success btn-flat btn-block btn-sm"%>
-                <% link_to 'Edit', edit_drugs_stock_path(drugs_stock) , class: "btn btn-warning  btn-flat btn-block btn-sm"%>
-                <% link_to 'Destroy', drugs_stock, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-            </tr>
-          <% end %>
-          </tbody>
-          <tfoot>
-          <tr>
-            <th colspan="3" style="text-align:right"></th>
-            <th><%#= number_with_precision(@drugs_stocks.sum(:quantity), precision: 3) %></th>
-            <th><%#= number_with_precision(@drugs_stocks.sum(:retail_price), precision: 3) %></th>
-            <th><%#= number_with_precision(@drugs_stocks.sum(:trade_price), precision: 3) %></th>
-            <th><%#= number_with_precision(@drugs_stocks.sum(:purchase_price), precision: 3) %></th>
-          </tr>
-          </tfoot>
         </table>
       </div>
     </div>
