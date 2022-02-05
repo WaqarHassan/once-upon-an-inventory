@@ -1,10 +1,14 @@
 class InvoiceDrugsController < ApplicationController
   before_action :set_invoice_drug, only: [:show, :edit, :update, :destroy]
+  layout "theme"
 
   # GET /invoice_drugs
   # GET /invoice_drugs.json
   def index
-    @invoice_drugs = InvoiceDrug.all
+    respond_to do |format|
+      format.html
+      format.json { render json: InvoiceDrugsDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /invoice_drugs/1
