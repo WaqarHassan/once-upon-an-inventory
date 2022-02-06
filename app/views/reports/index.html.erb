@@ -96,7 +96,7 @@
                 <th>Trade Price</th>
                 <th>Purchase Price</th>
                 <th>Company</th>
-                <th>Comments</th>
+                <th>Returned?</th>
               </tr>
               </thead>
 
@@ -112,7 +112,7 @@
                   <td><%= drugs_stock.trade_price %></td>
                   <td><%= drugs_stock.purchase_price %></td>
                   <td><%= Company.find(drugs_stock.company_id).name rescue "" %></td>
-                  <td></td>
+                  <td><%= drugs_stock.is_return %></td>
                 </tr>
               <% end %>
               </tbody>

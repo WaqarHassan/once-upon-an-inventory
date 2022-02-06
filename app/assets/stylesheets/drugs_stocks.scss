@@ -1,3 +1,7 @@
 // Place all the styles related to the drugs_stocks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#drug-stocks-datatable tr.drug_return td {
+    background-color: #c1bf24 !important;
+  }
