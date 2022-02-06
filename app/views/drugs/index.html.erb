@@ -39,7 +39,7 @@
                         <td><%= drug.trade_price %></td>
                         <td><%= drug.purchase_price %></td>
                         <td><%= drug.quantity %></td>
-                        <td><%= DrugsStock.where(drug_id: drug.id).sum(:quantity) %></td>
+                        <td><%= DrugsStock.where(drug_id: drug.id, is_return: :false).sum(:quantity) %></td>
                         <td><%= drug.try(:company).try(:name )%></td>
 <!--                        <td><%#= link_to 'Show', drug %></td>-->
                         <td><%= link_to 'Edit', edit_drug_path(drug) , class: "btn btn-success btn-flat btn-block btn-sm"%></td>

@@ -30,6 +30,7 @@ class DrugsStocksDatatable < AjaxDatatablesRails::ActiveRecord
           trade_price: record.trade_price,
           purchase_price: record.purchase_price,
           company: record.company&.name,
+          is_return: record.is_return,
           dt_action: action_column(record)
         }
       end

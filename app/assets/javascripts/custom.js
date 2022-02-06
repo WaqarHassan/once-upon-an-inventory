@@ -80,6 +80,11 @@ $(document).ready(function () {
             "url": $('#drugs-stocks-datatable').data('source')
         },
         "pagingType": "full_numbers",
+        "createdRow": function (row, data, dataIndex) {
+            if (data['is_return'] == 'true') {
+                $(row).addClass('drug_return');
+            }
+        },
         "columns": [
             { "data": "invoice_number" },
             { "data": "invoice_date" },
@@ -97,6 +102,11 @@ $(document).ready(function () {
     $("#invoices_report, #drugs_stock_report").DataTable({
         "paging": false,
         "info": false,
+        "createdRow": function (row, data, dataIndex) {
+            if (data[9] == 'true') {
+                $(row).addClass('drug_return');
+            }
+        },
         "footerCallback": function (row, data, start, end, display) {
             var api = this.api(), data;
 

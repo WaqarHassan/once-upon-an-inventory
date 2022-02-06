@@ -18,7 +18,7 @@
 #
 class Drug < ApplicationRecord
 	acts_as_paranoid
-  belongs_to :company
+  	belongs_to :company
 	has_many :distributor_drugs
 	has_many :distributors, through: :distributor_drugs
 	has_one :drugs_stock #, class_name: "DrugsStock"
@@ -37,6 +37,7 @@ class Drug < ApplicationRecord
 		end
 		puts ids
 	end
+
 	def normalize
 		total_purchase_quantity = DrugsStock.where(drug_id: self.id).sum(:quantity).to_i
 		total_sold_quantity = InvoiceDrug.where(drug_id: self.id).sum(:quantity).to_i
@@ -46,4 +47,5 @@ class Drug < ApplicationRecord
 		end
 		puts self.id
 	end
+
 end

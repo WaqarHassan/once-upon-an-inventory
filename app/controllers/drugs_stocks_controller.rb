@@ -25,6 +25,31 @@ class DrugsStocksController < ApplicationController
   def edit
   end
 
+  # Get /drug_stocks/drug_returns
+  # add drugss returned by patients
+  def drug_returns
+    if request.post?
+      invoice_date = params["drugs_stock"]["invoice_date"]
+      params["drugs_stock"]["invoice_date"]  = invoice_date.to_date if invoice_date.present? rescue ""
+      @drugs_stock = DrugsStock.new(drugs_returns_params)
+      @drugs_stock.is_return = true
+      respond_to do |format|
+        if @drugs_stock.save
+          
+          add_returned_quantity_to_drug
+
+          format.html { redirect_to drugs_stocks_path, notice: 'Drugs stock was successfully created.' }
+          format.json { render :show, status: :created, location: @drugs_stock }
+        else
+          format.html { render :new }
+          format.json { render json: @drugs_stock.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @drugs_stock = DrugsStock.new
+    end
+  end
+
   # POST /drugs_stocks
   # POST /drugs_stocks.json
   def create
@@ -48,7 +73,7 @@ class DrugsStocksController < ApplicationController
   def update
     respond_to do |format|
       if @drugs_stock.update(drugs_stock_params)
-        # update_drug     # This line fucked me . update edited drug stock . messed up!
+        # update_drug     # Do not update drug stock on update
         @drugs_stock.drug.update(drug_params)
         format.html { redirect_to drugs_stocks_path, notice: 'Drugs stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @drugs_stock }
@@ -74,19 +99,34 @@ class DrugsStocksController < ApplicationController
     def set_drugs_stock
       @drugs_stock = DrugsStock.find(params[:id])
     end
+
     def update_drug
       @drugs_stock.drug.update(drug_params)
-      # debugger
+
       quantity = @drugs_stock.drug.quantity.to_i + params[:drugs_stock][:quantity].to_i
       discount = @drugs_stock.discount + (100 - @drugs_stock.discount) * (@drugs_stock.additional_discount.to_f / 100)
-      # debugger
+      
       @drugs_stock.drug.update(quantity: quantity , discount: discount)
     end
+
+    def add_returned_quantity_to_drug
+
+      quantity = @drugs_stock.drug.quantity.to_i + params[:drugs_stock][:quantity].to_i
+      @drugs_stock.drug.update(quantity: quantity)
+
+    end
+    
     def drug_params
       params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price,:company_id)
     end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def drugs_stock_params
       params.require(:drugs_stock).permit(:retail_price, :trade_price, :purchase_price, :drug_id, :company_id,:quantity,:discount ,:additional_discount,:distributor_id, :invoice_date , :invoice_number)
     end
+
+    def drugs_returns_params
+      params.require(:drugs_stock).permit(:trade_price, :drug_id, :quantity, :invoice_date , :invoice_number)
+    end
+
 end

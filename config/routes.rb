@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :drugs_stocks #, except: :destroy
+  resources :drugs_stocks do 
+    collection do |c|
+      get :drug_returns
+      post :drug_returns
+    end
+  end #, except: :destroy
   resources :invoice_drugs #, except: :destroy
   resources :invoices , only: [:index, :show, :create, :new] do
     get :pdf

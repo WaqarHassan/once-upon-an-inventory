@@ -1,0 +1,48 @@
+<%= form_for(@drugs_stock,:as => :drugs_stock, method: :post, :url => drug_returns_drugs_stocks_path) do |f| %>
+    <% if @drugs_stock.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@drugs_stock.errors.count, "error") %> prohibited this drugs_stock from being saved:</h2>
+  
+        <ul>
+        <% @drugs_stock.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+
+        <div class="box-header with-border">
+            <h2>Drug Returns</h2>
+        </div>
+        <div class="field">
+          <%= f.label :invoice_number%>
+          <%= f.text_field :invoice_number, class: "form-control"%>
+        </div>
+        <div class="field">
+          <%= f.label :invoice_date%>
+          <%= f.text_field :invoice_date , class: "form-control datepicker" , value: (Date.today.strftime("%d/%m/%Y") ) %>
+        </div>
+        <div class="field">
+          <%= f.label :drug %>
+          <%= f.collection_select :drug_id , Drug.order(:brand_name), :id, :brand_name, {include_blank: "Select Drug"}, {class: "form-control", required: true} %>
+        </div>
+  
+        <div class="field">
+          <%= f.label :trade_price %>
+          <%= f.number_field :trade_price, class: "form-control", step: 0.01, required: :true %>
+        </div>
+  
+        <div class="form-group">
+          <%= f.label :quantity %>
+           <%= f.number_field :quantity, class: "form-control", step: 0.01, required: :true %>
+        </div>  
+        <div class="form-group">
+          <%= f.submit class: "btn btn-submit btn-info pull-right" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
