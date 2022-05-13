@@ -68,7 +68,7 @@ class InvoicesController < ApplicationController
     invoice_date = params["invoice"]["invoice_date"]
     params["invoice"]["invoice_date"]  = invoice_date.to_date if invoice_date.present? rescue ""
     @invoice = Invoice.new(invoice_params)
-    @invoice.id = Invoice.last.id + 1
+    @invoice.id = Invoice.unscoped.last.id + 1
     respond_to do |format|
       if params[:invoice_drugs].present? and params[:invoice_drugs].values.present? and @invoice.save
         params[:invoice_drugs].values.each do |invoice_drug|
