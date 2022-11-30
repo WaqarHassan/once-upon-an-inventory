@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pagy', '~> 3.5'
 gem 'ajax-datatables-rails', '~> 1.3', '>= 1.3.1'
 gem 'annotate'
+gem 'psych', '< 4'
 
 # group :development, :test do
 #   gem 'byebug', platform: :mri
