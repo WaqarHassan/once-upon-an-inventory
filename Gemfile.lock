@@ -129,6 +129,14 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
+    net-imap (0.3.1)
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.1.3)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     nio4r (2.5.8)
     nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
@@ -213,6 +221,7 @@ GEM
     sqlite3 (1.5.4-x86_64-linux)
     thor (1.2.1)
     tilt (2.0.11)
+    timeout (0.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -250,6 +259,9 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  net-imap
+  net-pop
+  net-smtp
   nokogiri
   pagy (~> 3.5)
   paranoia (~> 2.2)

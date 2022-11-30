@@ -23,6 +23,10 @@ gem 'ajax-datatables-rails', '~> 1.3', '>= 1.3.1'
 gem 'annotate'
 gem 'psych', '< 4'
 
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+
 # group :development, :test do
 #   gem 'byebug', platform: :mri
 # end
