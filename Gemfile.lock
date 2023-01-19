@@ -150,7 +150,7 @@ GEM
     psych (3.3.4)
     puma (3.12.6)
     racc (1.6.0)
-    rack (2.2.4)
+    rack (2.2.6.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (6.1.7)
